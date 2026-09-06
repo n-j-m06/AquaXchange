@@ -1,0 +1,4617 @@
+@import "tailwindcss";
+
+:root {
+  --ax-bg: #020b15;
+  --ax-blue: #00d9ff;
+  --ax-white: #f5fbff;
+  --ax-muted: #9ab0c0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ax-bg);
+  color: var(--ax-white);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ================================================= */
+/* SITE */
+/* ================================================= */
+
+.aquaxchange-site {
+  min-height: 100vh;
+  background: #020b15;
+  overflow: hidden;
+}
+
+/* ================================================= */
+/* HERO */
+/* ================================================= */
+
+.ax-hero {
+  position: relative;
+
+  min-height: 760px;
+
+  display: grid;
+  grid-template-columns: 43% 57%;
+
+  padding: 40px 5vw 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 40%,
+      rgba(0, 190, 255, .10),
+      transparent 38%
+    ),
+    #020b15;
+}
+
+/* ================================================= */
+/* LEFT */
+/* ================================================= */
+
+.ax-hero-content {
+  position: relative;
+
+  z-index: 50;
+
+  padding-top: 85px;
+}
+
+.ax-eyebrow {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #00d9ff;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+}
+
+.ax-eyebrow span {
+  width: 25px;
+  height: 1px;
+
+  background: #00d9ff;
+}
+
+.ax-hero-content h1 {
+  margin: 27px 0 0;
+
+  font-size: clamp(
+    58px,
+    5vw,
+    82px
+  );
+
+  line-height: .96;
+
+  letter-spacing: -4px;
+
+  font-weight: 600;
+}
+
+.ax-hero-content h1 em {
+  color: #00d9ff;
+
+  font-style: normal;
+
+  text-shadow:
+    0 0 30px rgba(0,217,255,.25);
+}
+
+.ax-hero-content p {
+  max-width: 500px;
+
+  margin-top: 32px;
+
+  color: var(--ax-muted);
+
+  font-size: 17px;
+
+  line-height: 1.65;
+}
+
+.ax-hero-buttons {
+  display: flex;
+
+  gap: 15px;
+
+  margin-top: 36px;
+}
+
+.ax-primary-btn {
+  border: none;
+
+  padding: 16px 25px;
+
+  border-radius: 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00dfff,
+      #00a7ec
+    );
+
+  color: #00131c;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(0,200,255,.15);
+
+  transition: .25s;
+}
+
+.ax-primary-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 40px rgba(0,210,255,.35);
+}
+
+.ax-secondary-btn {
+  border: 1px solid rgba(255,255,255,.2);
+
+  padding: 14px 23px;
+
+  border-radius: 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: white;
+
+  background: rgba(255,255,255,.02);
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.ax-secondary-btn:hover {
+  background: rgba(255,255,255,.06);
+}
+
+.ax-secondary-btn span {
+  width: 25px;
+  height: 25px;
+
+  border: 1px solid rgba(255,255,255,.35);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+/* ================================================= */
+/* SCENE */
+/* ================================================= */
+
+.ax-hero-visual {
+  position: relative;
+
+  min-height: 700px;
+
+  width: 100%;
+
+  overflow: visible;
+
+  isolation: isolate;
+}
+
+.ax-scene {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  /* YOUR MOUNTAIN IMAGE */
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(1, 12, 22, 0.72) 0%,
+      rgba(1, 12, 22, 0.38) 42%,
+      rgba(1, 12, 22, 0.18) 100%
+    ),
+    url("/images/night-mountains.jpg");
+
+  background-size: cover;
+
+  background-position: center center;
+
+  background-repeat: no-repeat;
+}
+
+/* BACKGROUND */
+
+.ax-scene-glow {
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  left: 18%;
+  top: 8%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,200,255,.13),
+      transparent 65%
+    );
+
+  filter: blur(20px);
+}
+
+/* ================================================= */
+/* MOUNTAINS */
+/* ================================================= */
+.ax-mountains {
+  display: none;
+}
+
+.ax-mountains {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: .95;
+}
+
+.ax-mountain {
+  position: absolute;
+
+  bottom: 18%;
+
+  width: 0;
+  height: 0;
+
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 360px solid #0b273b;
+
+  filter:
+    drop-shadow(
+      0 10px 25px rgba(0,0,0,.3)
+    );
+}
+
+.ax-mountain.m1 {
+  left: 3%;
+}
+
+.ax-mountain.m2 {
+  left: 28%;
+
+  border-left-width: 210px;
+  border-right-width: 210px;
+  border-bottom-width: 480px;
+
+  border-bottom-color: #0d3047;
+}
+
+.ax-mountain.m3 {
+  left: 63%;
+
+  border-left-width: 180px;
+  border-right-width: 180px;
+  border-bottom-width: 420px;
+
+  border-bottom-color: #092239;
+}
+
+/* ================================================= */
+/* LAKE */
+/* ================================================= */
+
+.ax-lake {
+  position: absolute;
+
+  left: -5%;
+  right: -5%;
+
+  bottom: 5%;
+
+  height: 170px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(0,210,255,.35),
+      rgba(0,100,150,.12) 45%,
+      transparent 70%
+    );
+
+  transform: perspective(500px)
+    rotateX(55deg);
+}
+
+.ax-lake-shimmer {
+  position: absolute;
+
+  width: 70%;
+  height: 40%;
+
+  left: 15%;
+  top: 25%;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,220,255,.25),
+      transparent
+    );
+
+  filter: blur(7px);
+}
+
+/* ================================================= */
+/* RESERVOIR */
+/* ================================================= */
+
+.ax-reservoir {
+  position: absolute;
+
+  left: 40%;
+
+  top: 80px;
+
+  width: 190px;
+  height: 82px;
+
+  border-radius: 50%;
+
+  z-index: 10;
+
+  background:
+    radial-gradient(
+      ellipse,
+      #b4fbff 0%,
+      #00d9ff 35%,
+      #007fa9 68%,
+      #06283c 100%
+    );
+}
+
+.ax-reservoir-inner {
+  position: absolute;
+
+  inset: 12px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255,255,255,.3);
+}
+
+.ax-waterfall {
+  position: absolute;
+
+  width: 30px;
+
+  height: 190px;
+
+  left: 80px;
+
+  top: 55px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(130,250,255,.95),
+      rgba(0,190,240,.55),
+      transparent
+    );
+
+  filter: blur(3px);
+
+  border-radius: 50%;
+}
+
+/* ================================================= */
+/* NETWORK */
+/* ================================================= */
+
+.ax-network {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 15;
+}
+
+.ax-route {
+  fill: none;
+
+  stroke: #00eaff;
+
+  stroke-width: 2;
+
+  stroke-dasharray: 7 10;
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(0,220,255,.8)
+    );
+
+  animation:
+    routeMove 2.5s linear infinite;
+}
+
+@keyframes routeMove {
+  to {
+    stroke-dashoffset: -35;
+  }
+}
+
+/* ================================================= */
+/* PARTICLES */
+/* ================================================= */
+
+.ax-particle {
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #b8fbff;
+
+  box-shadow:
+    0 0 14px #00dfff;
+
+  z-index: 25;
+}
+
+.p1 {
+  left: 50%;
+  top: 28%;
+
+  animation:
+    particle1 3s linear infinite;
+}
+
+.p2 {
+  left: 52%;
+  top: 45%;
+
+  animation:
+    particle2 3.5s linear infinite;
+}
+
+.p3 {
+  left: 55%;
+  top: 47%;
+
+  animation:
+    particle3 4s linear infinite;
+}
+
+.p4 {
+  left: 43%;
+  top: 45%;
+
+  animation:
+    particle4 3.2s linear infinite;
+}
+
+@keyframes particle1 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(160px);
+    opacity: 0;
+  }
+}
+
+@keyframes particle2 {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+}
+
+@keyframes particle3 {
+  0% {
+    transform: translate(0,0);
+  }
+
+  100% {
+    transform: translate(150px,100px);
+    opacity: 0;
+  }
+}
+
+@keyframes particle4 {
+  0% {
+    transform: translate(0,0);
+  }
+
+  100% {
+    transform: translate(-160px,100px);
+    opacity: 0;
+  }
+}
+
+/* ================================================= */
+/* AI */
+/* ================================================= */
+
+.ax-ai {
+  position: absolute;
+
+  left: 50%;
+  top: 49%;
+
+  transform: translate(-50%,-50%);
+
+  width: 135px;
+  height: 135px;
+
+  border-radius: 50%;
+
+  z-index: 30;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,215,255,.3),
+      rgba(0,40,65,.85) 60%,
+      #020e19 100%
+    );
+
+  border:
+    1px solid rgba(0,225,255,.8);
+
+  color: #00e5ff;
+}
+
+.ax-ai strong {
+  font-size: 28px;
+
+  margin-top: 3px;
+}
+
+.ax-ai span {
+  color: #d9faff;
+
+  font-size: 10px;
+
+  margin-top: 5px;
+}
+
+.ax-ai small {
+  color: #81cdda;
+
+  font-size: 9px;
+}
+
+.ax-ai-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(0,220,255,.25);
+}
+
+.ring1 {
+  inset: -14px;
+}
+
+.ring2 {
+  inset: -28px;
+
+  border-style: dashed;
+
+  animation:
+    rotateRing 12s linear infinite;
+}
+
+@keyframes rotateRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================================= */
+/* CARDS */
+/* ================================================= */
+
+.ax-info-card {
+  position: absolute;
+
+  z-index: 50;
+
+  min-width: 175px;
+
+  padding: 13px 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(3,18,30,.88);
+
+  border:
+    1px solid rgba(0,220,255,.4);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+
+  transition: .3s;
+}
+
+.ax-card-icon {
+  color: #00ddff;
+}
+
+.ax-card-icon svg {
+  width: 24px;
+}
+
+.ax-info-card strong,
+.ax-info-card b,
+.ax-info-card span {
+  display: block;
+}
+
+.ax-info-card strong {
+  color: #e7f8fc;
+
+  font-size: 11px;
+}
+
+.ax-info-card b {
+  margin-top: 4px;
+
+  font-size: 14px;
+}
+
+.ax-info-card span {
+  margin-top: 3px;
+
+  font-size: 9px;
+}
+
+.status-green {
+  color: #00e49b;
+}
+
+.status-red {
+  color: #ff5148;
+}
+
+.status-yellow {
+  color: #ffd33d;
+}
+
+.card-reservoir {
+  top: 55px;
+  right: 16%;
+
+  z-index: 60;
+}
+
+.card-agriculture {
+  top: 38%;
+  right: 3%;
+}
+
+.card-city {
+  bottom: 18%;
+  right: 5%;
+}
+
+.card-industry {
+  bottom: 8%;
+  left: 14%;
+}
+
+/* ================================================= */
+/* SLOGAN */
+/* ================================================= */
+
+.ax-slogan {
+  position: absolute;
+
+  right: 4%;
+
+  top: 11%;
+
+  z-index: 3;
+
+  color: #d5eff7;
+
+  font-family: cursive;
+
+  font-size: 25px;
+
+  line-height: 1.05;
+
+  font-style: italic;
+
+  transform: rotate(-5deg);
+}
+
+.ax-slogan span {
+  margin-left: 15px;
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media (max-width: 1100px) {
+
+  .ax-hero {
+    grid-template-columns: 1fr;
+
+    padding-top: 20px;
+  }
+
+  .ax-hero-content {
+    text-align: center;
+
+    padding-top: 45px;
+  }
+
+  .ax-eyebrow {
+    justify-content: center;
+  }
+
+  .ax-hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ax-hero-buttons {
+    justify-content: center;
+  }
+
+  .ax-hero-visual {
+    min-height: 620px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .ax-hero-content h1 {
+    font-size: 52px;
+
+    letter-spacing: -2px;
+  }
+
+  .ax-hero-buttons {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .ax-info-card {
+    transform: scale(.75);
+  }
+
+  .ax-slogan {
+    display: none;
+  }
+}
+  /* =========================================================
+   AQUAXCHANGE — NAVBAR
+   ========================================================= */
+
+.navbar {
+  height: 78px;
+  width: 100%;
+
+  padding: 0 5vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  z-index: 100;
+
+  background: rgba(2, 11, 21, 0.88);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  backdrop-filter: blur(18px);
+}
+
+/* LOGO */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 230px;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #00d9ff;
+
+  filter:
+    drop-shadow(0 0 10px rgba(0, 217, 255, .65));
+}
+
+.brand-icon svg {
+  width: 31px;
+  height: 31px;
+}
+
+.brand-name {
+  color: #f5fbff;
+
+  font-size: 21px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.brand-name span {
+  color: #00d9ff;
+}
+
+.brand-tagline {
+  margin-top: 3px;
+
+  color: #7f96a8;
+
+  font-size: 9px;
+
+  letter-spacing: .1px;
+}
+
+/* NAV LINKS */
+
+.nav-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 31px;
+
+  margin-left: auto;
+  margin-right: 55px;
+}
+
+.nav-links a {
+  position: relative;
+
+  color: #cbd9e2;
+
+  font-size: 13px;
+
+  text-decoration: none;
+
+  transition: color .25s ease;
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -9px;
+
+  width: 0;
+  height: 1px;
+
+  background: #00d9ff;
+
+  transform: translateX(-50%);
+
+  transition: width .25s ease;
+}
+
+.nav-links a:hover {
+  color: #00d9ff;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* RIGHT SIDE */
+
+.nav-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+}
+
+.nav-actions > svg {
+  color: #d6e5ed;
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.nav-actions > svg:hover {
+  color: #00d9ff;
+
+  filter:
+    drop-shadow(0 0 7px #00d9ff);
+}
+
+.nav-divider {
+  width: 1px;
+  height: 21px;
+
+  background: rgba(255,255,255,.18);
+}
+
+.login-link {
+  color: #dce8ef;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition: .25s;
+}
+
+.login-link:hover {
+  color: #00d9ff;
+}
+
+.launch-button {
+  border: none;
+
+  padding: 13px 21px;
+
+  border-radius: 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00dfff,
+      #00a8ec
+    );
+
+  color: #00141e;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 25px rgba(0, 190, 255, .18);
+
+  transition:
+    box-shadow .25s ease,
+    transform .25s ease;
+}
+
+.launch-button:hover {
+  box-shadow:
+    0 8px 35px rgba(0, 210, 255, .4);
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-section {
+  width: 100%;
+
+  min-height: 125px;
+
+  padding: 25px 5vw;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 85px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #020b15,
+      #03101b
+    );
+
+  border-top: 1px solid rgba(255,255,255,.05);
+
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.stat {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  min-width: 180px;
+}
+
+.stat svg {
+  width: 35px;
+  height: 35px;
+
+  flex-shrink: 0;
+
+  color: #00dfff;
+
+  filter:
+    drop-shadow(
+      0 0 10px rgba(0,217,255,.65)
+    );
+}
+
+.stat > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.stat strong {
+  color: #f4fbff;
+
+  font-size: 23px;
+
+  line-height: 1;
+}
+
+.stat span {
+  color: #8097a8;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   GLOBAL CHALLENGE
+   ========================================================= */
+
+.challenge {
+  position: relative;
+
+  min-height: 560px;
+
+  padding: 75px 7vw 55px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(0, 110, 170, .16),
+      transparent 55%
+    ),
+    #020b15;
+}
+
+/* subtle water effect */
+
+.challenge::before {
+  content: "";
+
+  position: absolute;
+
+  left: -10%;
+  right: -10%;
+
+  bottom: -80px;
+
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(0, 210, 255, .12),
+      transparent 65%
+    );
+
+  filter: blur(18px);
+
+  pointer-events: none;
+}
+
+/* TOP CONTENT */
+
+.challenge-heading {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1fr 90px 1fr;
+
+  align-items: center;
+
+  gap: 45px;
+}
+
+.challenge-heading > div:first-child span {
+  color: #00d9ff;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+}
+
+.challenge-heading h2 {
+  margin: 17px 0 0;
+
+  color: #f2f9fc;
+
+  font-size: 35px;
+
+  font-weight: 500;
+
+  line-height: 1.18;
+
+  letter-spacing: -1px;
+}
+
+.challenge-heading p {
+  margin: 0;
+
+  color: #91a8b8;
+
+  font-size: 13px;
+
+  line-height: 1.75;
+
+  max-width: 440px;
+}
+
+/* CENTER DIVIDER */
+
+.challenge-divider {
+  height: 112px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+}
+
+.challenge-divider::before,
+.challenge-divider::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  width: 1px;
+
+  height: 43px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(0,217,255,.65)
+    );
+
+  transform: translateX(-50%);
+}
+
+.challenge-divider::before {
+  top: 0;
+}
+
+.challenge-divider::after {
+  bottom: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,217,255,.65),
+      transparent
+    );
+}
+
+.challenge-divider svg {
+  position: relative;
+
+  z-index: 2;
+
+  width: 22px;
+  height: 22px;
+
+  color: #00dfff;
+
+  filter:
+    drop-shadow(
+      0 0 10px rgba(0,217,255,.7)
+    );
+}
+
+
+/* =========================================================
+   FEATURE GRID
+   ========================================================= */
+
+.feature-grid {
+  max-width: 1100px;
+
+  margin: 65px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 25px;
+}
+
+.feature {
+  position: relative;
+
+  text-align: center;
+
+  padding: 18px 10px 25px;
+
+  border-radius: 12px;
+
+  transition:
+    transform .3s ease,
+    background .3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+
+  background:
+    rgba(0, 180, 240, .035);
+}
+
+.feature svg {
+  width: 39px;
+  height: 39px;
+
+  color: #00dfff;
+
+  filter:
+    drop-shadow(
+      0 0 11px rgba(0,217,255,.65)
+    );
+}
+
+.feature h3 {
+  margin: 15px 0 6px;
+
+  color: #edf8fc;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.feature p {
+  margin: 0;
+
+  color: #7891a3;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
+   ========================================================= */
+
+.scroll-explore {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 18px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+.scroll-explore > div {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(0,217,255,.55);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    rgba(0,217,255,.025);
+
+  box-shadow:
+    0 0 15px rgba(0,217,255,.08);
+}
+
+.scroll-explore svg {
+  width: 16px;
+  height: 16px;
+
+  color: #00dfff;
+}
+
+.scroll-explore span {
+  color: #718a9b;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .nav-links {
+    gap: 18px;
+    margin-right: 25px;
+  }
+
+  .stats-section {
+    gap: 40px;
+  }
+
+  .challenge-heading {
+    grid-template-columns: 1fr;
+
+    text-align: center;
+  }
+
+  .challenge-heading p {
+    margin: auto;
+  }
+
+  .challenge-divider {
+    display: none;
+  }
+}
+
+
+@media (max-width: 750px) {
+
+  .navbar {
+    height: 70px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions > svg,
+  .nav-divider,
+  .login-link {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: 18px;
+  }
+
+  .brand-tagline {
+    font-size: 8px;
+  }
+
+  .launch-button {
+    padding: 11px 15px;
+  }
+
+  .stats-section {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    padding: 25px;
+  }
+
+  .stat {
+    min-width: 150px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .challenge {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+  /* =========================================================
+   ATMOSPHERIC RAIN
+   ========================================================= */
+
+.ax-rain {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 35;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  opacity: .65;
+}
+
+.ax-rain span {
+  position: absolute;
+
+  top: -30px;
+
+  width: 1px;
+  height: 28px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(130, 225, 255, .8)
+    );
+
+  transform: rotate(12deg);
+
+  filter:
+    drop-shadow(
+      0 0 3px rgba(0, 210, 255, .3)
+    );
+
+  animation:
+    rainFall linear infinite;
+}
+
+@keyframes rainFall {
+
+  0% {
+    transform:
+      translate3d(0, -40px, 0)
+      rotate(12deg);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: .7;
+  }
+
+  100% {
+    transform:
+      translate3d(-70px, 720px, 0)
+      rotate(12deg);
+
+    opacity: 0;
+  }
+}
+/* =========================================================
+   THUNDERSTORM ATMOSPHERE
+   ========================================================= */
+
+.ax-thunder {
+  position: absolute;
+
+  width: 520px;
+  height: 280px;
+
+  top: 5%;
+  right: 10%;
+
+  z-index: 1;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(90, 180, 255, .08),
+      transparent 68%
+    );
+
+  filter: blur(25px);
+
+  animation:
+    stormPulse 7s ease-in-out infinite;
+}
+
+@keyframes stormPulse {
+
+  0%,
+  72%,
+  100% {
+    opacity: .35;
+  }
+
+  74% {
+    opacity: .9;
+  }
+
+  75% {
+    opacity: .25;
+  }
+
+  77% {
+    opacity: .65;
+  }
+
+  79% {
+    opacity: .25;
+  }
+}
+/* =========================================================
+   DISTANT LIGHTNING
+   ========================================================= */
+
+.ax-lightning {
+  position: absolute;
+
+  top: 5%;
+  right: 22%;
+
+  width: 120px;
+  height: 250px;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  animation:
+    lightningFlash 8s infinite;
+}
+
+.bolt {
+  position: absolute;
+
+  width: 2px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(190, 240, 255, .95),
+      transparent
+    );
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(0, 210, 255, .9)
+    );
+
+  opacity: 0;
+}
+
+.bolt-1 {
+  left: 45px;
+  top: 15px;
+
+  height: 120px;
+
+  clip-path: polygon(
+    55% 0,
+    100% 0,
+    62% 40%,
+    85% 40%,
+    20% 100%,
+    42% 53%,
+    15% 53%
+  );
+}
+
+.bolt-2 {
+  left: 75px;
+  top: 40px;
+
+  height: 90px;
+
+  transform: rotate(8deg);
+
+  clip-path: polygon(
+    50% 0,
+    100% 0,
+    60% 45%,
+    85% 45%,
+    20% 100%,
+    40% 55%,
+    10% 55%
+  );
+}
+
+@keyframes lightningFlash {
+
+  0%,
+  55%,
+  100% {
+    opacity: 0;
+  }
+
+  56% {
+    opacity: .85;
+  }
+
+  56.5% {
+    opacity: 0;
+  }
+
+  57% {
+    opacity: .55;
+  }
+
+  58% {
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   AQUAXCHANGE — SCENE LAYERING & STORM VISIBILITY
+   ========================================================= */
+
+.ax-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ax-scene-glow {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ax-mountains {
+  z-index: 5;
+  pointer-events: none;
+}
+
+.ax-lake {
+  z-index: 6;
+  pointer-events: none;
+}
+
+.ax-reservoir {
+  z-index: 10;
+}
+
+.ax-network {
+  z-index: 15;
+  pointer-events: none;
+}
+
+.ax-particle {
+  z-index: 25;
+  pointer-events: none;
+}
+
+.ax-ai {
+  z-index: 30;
+}
+
+.ax-rain {
+  z-index: 35 !important;
+  pointer-events: none;
+}
+
+.ax-lightning {
+  z-index: 36 !important;
+  pointer-events: none;
+}
+
+.ax-scene-fog {
+  z-index: 40;
+  pointer-events: none;
+}
+
+.ax-info-card {
+  z-index: 50;
+}
+
+.card-reservoir {
+  z-index: 60;
+}
+
+/* =========================================================
+   VISIBLE RAIN
+   ========================================================= */
+
+.ax-rain {
+  position: absolute;
+  inset: -20px 0 0;
+  overflow: hidden;
+  opacity: 0.72;
+}
+
+.ax-rain span {
+  position: absolute;
+  top: -60px;
+  width: 1px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(150, 235, 255, 0.95) 55%,
+    rgba(0, 210, 255, 0.35) 100%
+  );
+  box-shadow: 0 0 5px rgba(0, 220, 255, 0.35);
+  transform: rotate(13deg);
+  animation-name: axRainFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes axRainFall {
+  0% {
+    transform: translate3d(0, -60px, 0) rotate(13deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  88% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(-110px, 820px, 0) rotate(13deg);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   THUNDERSTORM GLOW
+   ========================================================= */
+
+.ax-thunder {
+  position: absolute;
+  width: 560px;
+  height: 300px;
+  top: -20px;
+  right: 4%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(120, 205, 255, 0.18) 0%,
+    rgba(60, 150, 220, 0.07) 38%,
+    transparent 72%
+  );
+  filter: blur(30px);
+  animation: axStormPulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes axStormPulse {
+  0%, 67%, 100% { opacity: 0.3; }
+  69% { opacity: 0.85; }
+  70% { opacity: 0.2; }
+  71.5% { opacity: 0.7; }
+  73% { opacity: 0.25; }
+}
+
+/* =========================================================
+   LIGHTNING
+   ========================================================= */
+
+.ax-lightning {
+  position: absolute;
+  top: 0;
+  right: 18%;
+  width: 180px;
+  height: 330px;
+  pointer-events: none;
+  animation: axLightningFlash 6s infinite;
+}
+
+.bolt {
+  position: absolute;
+  opacity: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(120, 225, 255, 0.95),
+    transparent
+  );
+  filter:
+    drop-shadow(0 0 7px rgba(150, 235, 255, 1))
+    drop-shadow(0 0 18px rgba(0, 210, 255, 0.75));
+}
+
+.bolt-1 {
+  left: 70px;
+  top: 35px;
+  width: 5px;
+  height: 180px;
+  clip-path: polygon(
+    48% 0, 100% 0, 61% 36%, 84% 36%,
+    20% 100%, 42% 52%, 12% 52%
+  );
+}
+
+.bolt-2 {
+  left: 104px;
+  top: 70px;
+  width: 4px;
+  height: 130px;
+  transform: rotate(7deg);
+  clip-path: polygon(
+    48% 0, 100% 0, 60% 40%, 86% 40%,
+    18% 100%, 41% 54%, 10% 54%
+  );
+}
+
+@keyframes axLightningFlash {
+  0%, 58%, 100% { opacity: 0; }
+  59% { opacity: 0.95; }
+  59.4% { opacity: 0.08; }
+  60% { opacity: 0.8; }
+  60.5% { opacity: 0; }
+  61.2% { opacity: 0.45; }
+  61.5% { opacity: 0; }
+}
+
+/* =========================================================
+   ATMOSPHERIC FOG
+   ========================================================= */
+
+.ax-scene-fog {
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  bottom: 4%;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 215, 255, 0.12),
+    transparent 68%
+  );
+  filter: blur(26px);
+  animation: axFogMove 10s ease-in-out infinite;
+}
+
+@keyframes axFogMove {
+  0%, 100% { transform: translateX(-3%); }
+  50% { transform: translateX(3%); }
+}
+
+/* Mobile */
+@media (max-width: 750px) {
+  .ax-rain {
+    opacity: 0.42;
+  }
+
+  .ax-lightning {
+    right: 5%;
+    transform: scale(0.75);
+    transform-origin: top right;
+  }
+
+  .ax-thunder {
+    right: -20%;
+    transform: scale(0.75);
+  }
+}
+/* =========================================================
+   AQUAXCHANGE — FULL HERO RAIN
+   ========================================================= */
+
+.ax-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Full hero rain layer */
+
+.ax-global-rain {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 20;
+
+  opacity: 0.75;
+}
+
+
+/* Individual rain drops */
+
+.ax-global-rain span {
+  position: absolute;
+
+  top: -80px;
+
+  width: 1px;
+  height: 42px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(175, 235, 255, 0.95) 45%,
+    rgba(0, 210, 255, 0.65) 100%
+  );
+
+  box-shadow:
+    0 0 5px rgba(0, 220, 255, 0.35);
+
+  transform: rotate(13deg);
+
+  animation:
+    axFullScreenRain
+    linear
+    infinite;
+}
+
+
+/* Rain movement */
+
+@keyframes axFullScreenRain {
+
+  0% {
+    transform:
+      translate3d(0, -80px, 0)
+      rotate(13deg);
+
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.65;
+  }
+
+  100% {
+    transform:
+      translate3d(-120px, 100vh, 0)
+      rotate(13deg);
+
+    opacity: 0;
+  }
+}
+/* =========================================================
+   AQUAXCHANGE — FULL SCREEN LIGHTNING
+   ========================================================= */
+
+.ax-global-lightning {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 21;
+}
+
+
+/* =========================================================
+   FULL SCREEN SKY FLASH
+   ========================================================= */
+
+.ax-lightning-flash {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 78% 18%,
+      rgba(170, 225, 255, 0.20),
+      transparent 38%
+    );
+
+  opacity: 0;
+
+  animation:
+    globalLightningFlash
+    8s infinite;
+}
+
+
+/* =========================================================
+   LARGE ATMOSPHERIC LIGHT
+   ========================================================= */
+
+.ax-lightning-glow {
+  position: absolute;
+
+  width: 900px;
+  height: 500px;
+
+  top: -120px;
+  left: 45%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(70, 180, 255, 0.12),
+      rgba(0, 180, 255, 0.04) 40%,
+      transparent 72%
+    );
+
+  filter: blur(50px);
+
+  opacity: 0;
+
+  animation:
+    lightningAtmosphere
+    8s infinite;
+}
+
+
+/* =========================================================
+   LIGHTNING BOLTS
+   ========================================================= */
+
+.ax-bolt {
+  position: absolute;
+
+  width: 5px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,1),
+      rgba(160,235,255,0.95),
+      rgba(0,210,255,0.3),
+      transparent
+    );
+
+  filter:
+    drop-shadow(0 0 5px rgba(255,255,255,0.95))
+    drop-shadow(0 0 14px rgba(0,210,255,0.9))
+    drop-shadow(0 0 30px rgba(0,180,255,0.5));
+
+  opacity: 0;
+
+  clip-path: polygon(
+    45% 0%,
+    75% 0%,
+    58% 27%,
+    82% 27%,
+    22% 65%,
+    45% 45%,
+    15% 45%
+  );
+}
+
+
+/* LEFT */
+
+.ax-bolt-1 {
+  left: 18%;
+  top: 7%;
+
+  width: 5px;
+  height: 280px;
+
+  transform: rotate(8deg);
+}
+
+
+/* CENTER */
+
+.ax-bolt-2 {
+  left: 48%;
+  top: 3%;
+
+  width: 6px;
+  height: 330px;
+
+  transform: rotate(-4deg);
+}
+
+
+/* RIGHT */
+
+.ax-bolt-3 {
+  right: 12%;
+  top: 8%;
+
+  width: 5px;
+  height: 260px;
+
+  transform: rotate(7deg);
+}
+
+
+/* =========================================================
+   LIGHTNING ANIMATION
+   ========================================================= */
+
+@keyframes globalLightningFlash {
+
+  0%,
+  57%,
+  100% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.75;
+  }
+
+  58.4% {
+    opacity: 0.05;
+  }
+
+  59% {
+    opacity: 0.55;
+  }
+
+  59.4% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0.30;
+  }
+
+  60.3% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes lightningAtmosphere {
+
+  0%,
+  57%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
+  }
+
+  58% {
+    opacity: 0.9;
+    transform: translateX(-50%) scale(1);
+  }
+
+  59% {
+    opacity: 0.15;
+  }
+
+  60% {
+    opacity: 0.65;
+  }
+
+  61% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+.ax-bolt-1 {
+  animation: boltFlash1 8s infinite;
+}
+
+.ax-bolt-2 {
+  animation: boltFlash2 8s infinite;
+}
+
+.ax-bolt-3 {
+  animation: boltFlash3 8s infinite;
+}
+
+@keyframes boltFlash1 {
+
+  0%, 57%, 100% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.8;
+  }
+
+  58.5% {
+    opacity: 0;
+  }
+
+  59% {
+    opacity: 0.5;
+  }
+
+  59.4% {
+    opacity: 0;
+  }
+}
+
+@keyframes boltFlash2 {
+
+  0%, 57.5%, 100% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.95;
+  }
+
+  58.3% {
+    opacity: 0;
+  }
+
+  59% {
+    opacity: 0.7;
+  }
+
+  59.5% {
+    opacity: 0;
+  }
+}
+
+@keyframes boltFlash3 {
+
+  0%, 58%, 100% {
+    opacity: 0;
+  }
+
+  58.5% {
+    opacity: 0.75;
+  }
+
+  59% {
+    opacity: 0;
+  }
+
+  59.3% {
+    opacity: 0.45;
+  }
+
+  59.7% {
+    opacity: 0;
+  }
+}
+.ax-global-rain {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 35;
+
+  opacity: 0.68;
+}
+
+.ax-global-rain span {
+  position: absolute;
+
+  top: -100px;
+
+  width: 1px;
+
+  height: 48px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(180, 235, 255, 0.95) 45%,
+    rgba(0, 205, 255, 0.45) 100%
+  );
+
+  box-shadow:
+    0 0 5px rgba(0, 210, 255, 0.35);
+
+  transform: rotate(13deg);
+
+  animation:
+    axFullScreenRain
+    linear
+    infinite;
+}
+
+@keyframes axFullScreenRain {
+
+  0% {
+    transform:
+      translate3d(0, -100px, 0)
+      rotate(13deg);
+
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.65;
+  }
+
+  100% {
+    transform:
+      translate3d(-130px, 110vh, 0)
+      rotate(13deg);
+
+    opacity: 0;
+  }
+}
+.ax-global-lightning {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 36;
+}
+
+
+/* Whole sky illuminates */
+
+.ax-lightning-flash {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 75% 18%,
+      rgba(200, 235, 255, 0.24),
+      rgba(80, 180, 255, 0.08) 25%,
+      transparent 55%
+    );
+
+  opacity: 0;
+
+  animation:
+    axSkyFlash
+    8s infinite;
+}
+
+
+/* Large atmospheric glow */
+
+.ax-lightning-glow {
+  position: absolute;
+
+  width: 1100px;
+  height: 650px;
+
+  top: -220px;
+  left: 60%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(140, 220, 255, 0.16),
+      transparent 70%
+    );
+
+  filter: blur(55px);
+
+  opacity: 0;
+
+  animation:
+    axStormGlow
+    8s infinite;
+}
+
+
+/* Lightning bolts */
+
+.ax-bolt {
+  position: absolute;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,1),
+      rgba(170,235,255,0.95),
+      rgba(0,210,255,0.2),
+      transparent
+    );
+
+  filter:
+    drop-shadow(0 0 6px rgba(255,255,255,1))
+    drop-shadow(0 0 16px rgba(0,210,255,0.9))
+    drop-shadow(0 0 35px rgba(0,180,255,0.5));
+
+  clip-path: polygon(
+    48% 0,
+    76% 0,
+    60% 28%,
+    84% 28%,
+    20% 100%,
+    43% 48%,
+    13% 48%
+  );
+}
+
+
+/* Left lightning */
+
+.ax-bolt-1 {
+  left: 17%;
+  top: 5%;
+
+  width: 5px;
+  height: 270px;
+
+  transform: rotate(8deg);
+
+  animation:
+    axBoltLeft
+    8s infinite;
+}
+
+
+/* Middle lightning */
+
+.ax-bolt-2 {
+  left: 51%;
+  top: 2%;
+
+  width: 6px;
+  height: 330px;
+
+  transform: rotate(-5deg);
+
+  animation:
+    axBoltCenter
+    8s infinite;
+}
+
+
+/* Right lightning */
+
+.ax-bolt-3 {
+  right: 13%;
+  top: 6%;
+
+  width: 5px;
+  height: 280px;
+
+  transform: rotate(7deg);
+
+  animation:
+    axBoltRight
+    8s infinite;
+}
+@keyframes axSkyFlash {
+
+  0%,
+  57%,
+  100% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.85;
+  }
+
+  58.3% {
+    opacity: 0.05;
+  }
+
+  59% {
+    opacity: 0.65;
+  }
+
+  59.4% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0.35;
+  }
+
+  60.3% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes axStormGlow {
+
+  0%,
+  57%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
+  }
+
+  58% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  59% {
+    opacity: 0.1;
+  }
+
+  60% {
+    opacity: 0.7;
+  }
+
+  61% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+
+@keyframes axBoltLeft {
+
+  0%,
+  57%,
+  100% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.75;
+  }
+
+  58.4% {
+    opacity: 0;
+  }
+
+  59% {
+    opacity: 0.4;
+  }
+
+  59.5% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes axBoltCenter {
+
+  0%,
+  57.5%,
+  100% {
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 0.95;
+  }
+
+  58.4% {
+    opacity: 0;
+  }
+
+  59% {
+    opacity: 0.65;
+  }
+
+  59.5% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes axBoltRight {
+
+  0%,
+  58%,
+  100% {
+    opacity: 0;
+  }
+
+  58.5% {
+    opacity: 0.8;
+  }
+
+  59% {
+    opacity: 0;
+  }
+
+  59.4% {
+    opacity: 0.45;
+  }
+
+  59.8% {
+    opacity: 0;
+  }
+}
+.ax-hero-content {
+  position: relative;
+  z-index: 50;
+}
+
+.ax-hero-visual {
+  position: relative;
+  z-index: 30;
+}
+
+.ax-network {
+  z-index: 45;
+}
+
+.ax-ai {
+  z-index: 50;
+}
+
+.ax-info-card {
+  z-index: 60;
+}
+
+.ax-global-rain {
+  z-index: 35;
+}
+
+.ax-global-lightning {
+  z-index: 34;
+}
+
+.navbar {
+  position: relative;
+  z-index: 100;
+}
+/* =========================================================
+   FULL SCREEN MOUNTAIN BACKGROUND
+   ========================================================= */
+
+.ax-hero {
+  position: relative;
+  min-height: calc(100vh - 70px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+
+/* Full-screen image */
+
+.ax-mountain-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(1, 12, 22, 0.88) 0%,
+      rgba(1, 12, 22, 0.70) 28%,
+      rgba(1, 12, 22, 0.35) 55%,
+      rgba(1, 12, 22, 0.20) 100%
+    ),
+    url("/images/night-mountains.jpg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+/* =========================================================
+   AQUAXCHANGE — TRUE FULL HERO MOUNTAIN BACKGROUND
+   ========================================================= */
+
+/* Hero becomes the background container */
+.ax-hero {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+
+  background: #020b15 !important;
+}
+
+/* FULL HERO MOUNTAIN IMAGE */
+.ax-hero::before {
+  content: "";
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 11, 21, 0.92) 0%,
+      rgba(2, 11, 21, 0.78) 22%,
+      rgba(2, 11, 21, 0.48) 48%,
+      rgba(2, 11, 21, 0.25) 75%,
+      rgba(2, 11, 21, 0.18) 100%
+    ),
+    url("/images/night-mountains.jpg");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   REMOVE MOUNTAIN IMAGE FROM RIGHT-SIDE SCENE
+   ========================================================= */
+
+.ax-scene {
+  background: transparent !important;
+  background-image: none !important;
+
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible !important;
+}
+
+
+/* =========================================================
+   KEEP ALL HERO CONTENT ABOVE BACKGROUND
+   ========================================================= */
+
+.ax-hero-content {
+  position: relative;
+  z-index: 50;
+}
+
+.ax-hero-visual {
+  position: relative;
+  z-index: 30;
+}
+
+
+/* AI VISUALIZATION */
+.ax-network {
+  position: relative;
+  z-index: 45;
+}
+
+.ax-ai {
+  z-index: 50;
+}
+
+.ax-info-card {
+  z-index: 60;
+}
+
+
+/* =========================================================
+   RAIN — ABOVE EVERYTHING
+   ========================================================= */
+
+.ax-global-rain {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 70 !important;
+
+  opacity: 0.72;
+}
+
+
+/* =========================================================
+   LIGHTNING — ABOVE BACKGROUND + RAIN
+   ========================================================= */
+
+.ax-global-lightning {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 65 !important;
+}
+.ax-hero-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 34px;
+}
+/* =====================================================
+   BIGGER HERO TYPOGRAPHY
+   ===================================================== */
+
+.ax-hero-title {
+  font-size: clamp(4.2rem, 5.6vw, 6.8rem) !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.055em !important;
+  font-weight: 700 !important;
+}
+
+.ax-hero-description {
+  font-size: 1.15rem !important;
+  line-height: 1.7 !important;
+  max-width: 560px !important;
+}
+
+.ax-eyebrow {
+  font-size: 0.82rem !important;
+  letter-spacing: 0.32em !important;
+}
+/* =====================================================
+   AQUAXCHANGE — NEW WATER INTELLIGENCE VISUAL
+   ===================================================== */
+
+.water-intelligence {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 25;
+}
+
+
+/* -----------------------------------------------------
+   Ambient glow
+   ----------------------------------------------------- */
+
+.water-ambient-glow {
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(0, 210, 255, 0.16) 0%,
+    rgba(0, 150, 255, 0.07) 32%,
+    transparent 70%
+  );
+
+  filter: blur(20px);
+
+  animation: waterGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes waterGlow {
+
+  from {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.65;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+
+/* -----------------------------------------------------
+   Particles
+   ----------------------------------------------------- */
+
+.water-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.water-particles span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: rgba(80, 220, 255, 0.8);
+
+  box-shadow:
+    0 0 8px rgba(0, 210, 255, 0.9);
+
+  animation: waterParticle linear infinite;
+}
+
+@keyframes waterParticle {
+
+  0% {
+    transform: translateY(20px) scale(0.5);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-70px) scale(1);
+    opacity: 0;
+  }
+}
+
+
+/* -----------------------------------------------------
+   CENTRAL CORE
+   ----------------------------------------------------- */
+
+.water-core {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 230px;
+  height: 230px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.water-core-inner {
+  position: relative;
+
+  width: 155px;
+  height: 155px;
+
+  border-radius: 50%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      rgba(40, 230, 255, 0.28),
+      rgba(2, 20, 32, 0.94) 62%
+    );
+
+  border: 1px solid rgba(0, 220, 255, 0.65);
+
+  box-shadow:
+    0 0 35px rgba(0, 210, 255, 0.28),
+    inset 0 0 35px rgba(0, 210, 255, 0.08);
+
+  z-index: 5;
+}
+
+
+.water-drop {
+  font-size: 25px;
+
+  filter:
+    drop-shadow(0 0 10px rgba(0, 220, 255, 0.8));
+
+  margin-bottom: 5px;
+}
+
+
+.water-core-title {
+  color: #ffffff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+}
+
+
+.water-core-value {
+  margin-top: 5px;
+
+  color: rgba(180, 225, 240, 0.65);
+
+  font-size: 8px;
+
+  letter-spacing: 0.08em;
+}
+
+
+.water-core-status {
+  margin-top: 10px;
+
+  font-size: 7px;
+
+  color: rgba(120, 230, 255, 0.8);
+
+  letter-spacing: 0.1em;
+}
+
+
+.water-core-status span {
+  display: inline-block;
+
+  width: 5px;
+  height: 5px;
+
+  margin-right: 5px;
+
+  border-radius: 50%;
+
+  background: #00e5a0;
+
+  box-shadow: 0 0 8px #00e5a0;
+}
+
+
+/* -----------------------------------------------------
+   CORE RINGS
+   ----------------------------------------------------- */
+
+.water-core-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(0, 210, 255, 0.25);
+}
+
+.ring-one {
+  inset: 12px;
+
+  animation:
+    coreRing
+    12s
+    linear
+    infinite;
+}
+
+.ring-two {
+  inset: -8px;
+
+  border-style: dashed;
+
+  opacity: 0.4;
+
+  animation:
+    coreRing
+    18s
+    linear
+    infinite
+    reverse;
+}
+
+@keyframes coreRing {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   WATER FLOW — SMOOTH ORGANIC ANIMATION
+   ===================================================== */
+
+.water-flow-lines {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+
+  pointer-events: none;
+}
+
+
+/* Main flowing paths */
+
+.water-flow {
+  fill: none;
+
+  stroke: rgba(0, 220, 255, 0.65);
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+
+  stroke-dasharray: 2 16;
+
+  filter:
+    drop-shadow(0 0 5px rgba(0, 220, 255, 0.8))
+    drop-shadow(0 0 12px rgba(0, 180, 255, 0.35));
+
+  animation:
+    waterFlowMove
+    2.8s
+    linear
+    infinite;
+}
+
+@keyframes waterFlowMove {
+
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+/* -----------------------------------------------------
+   DATA CARDS
+   ----------------------------------------------------- */
+
+.water-card {
+  position: absolute;
+
+  min-width: 190px;
+
+  padding: 16px 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(5, 28, 42, 0.9),
+      rgba(2, 14, 25, 0.82)
+    );
+
+  border: 1px solid rgba(0, 210, 255, 0.38);
+
+  border-radius: 14px;
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 180, 255, 0.06);
+
+  animation: cardFloat 4s ease-in-out infinite;
+}
+
+
+.water-card-icon {
+  font-size: 25px;
+
+  filter:
+    drop-shadow(0 0 8px rgba(0, 210, 255, 0.65));
+}
+
+
+.water-card span {
+  display: block;
+
+  font-size: 9px;
+
+  letter-spacing: 0.12em;
+
+  color: rgba(190, 220, 235, 0.65);
+}
+
+
+.water-card strong {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 18px;
+
+  color: white;
+}
+
+
+.water-card small {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 8px;
+
+  letter-spacing: 0.04em;
+}
+
+
+.positive {
+  color: #00e5a0;
+}
+
+.warning {
+  color: #ff5b65;
+}
+
+.medium {
+  color: #ffc83d;
+}
+
+
+/* -----------------------------------------------------
+   CARD POSITIONS
+   ----------------------------------------------------- */
+
+.reservoir-card {
+  left: 18%;
+  top: 17%;
+}
+
+.agriculture-card {
+  right: 4%;
+  top: 31%;
+}
+
+.industry-card {
+  left: 16%;
+  bottom: 17%;
+}
+
+.city-card {
+  right: 7%;
+  bottom: 14%;
+}
+
+
+@keyframes cardFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* Different animation timing */
+
+.agriculture-card {
+  animation-delay: -1.2s;
+}
+
+.industry-card {
+  animation-delay: -2.2s;
+}
+
+.city-card {
+  animation-delay: -0.6s;
+}
+
+
+/* -----------------------------------------------------
+   LIVE STATUS
+   ----------------------------------------------------- */
+
+.water-live-status {
+  position: absolute;
+
+  left: 50%;
+  bottom: 6%;
+
+  transform: translateX(-50%);
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(0, 210, 255, 0.25);
+
+  background: rgba(2, 20, 30, 0.65);
+
+  backdrop-filter: blur(10px);
+
+  color: rgba(180, 230, 245, 0.7);
+
+  font-size: 8px;
+
+  letter-spacing: 0.18em;
+}
+
+
+.live-dot {
+  display: inline-block;
+
+  width: 6px;
+  height: 6px;
+
+  margin-right: 7px;
+
+  border-radius: 50%;
+
+  background: #00e5a0;
+
+  box-shadow: 0 0 10px #00e5a0;
+
+  animation: livePulse 1.5s infinite;
+}
+
+@keyframes livePulse {
+
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+/* =====================================================
+   NAVBAR — LARGER / CLEANER
+   ===================================================== */
+
+.ax-navbar a,
+.ax-nav-link {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+}
+
+.ax-navbar {
+  min-height: 70px !important;
+}
+
+.ax-navbar .ax-logo-text {
+  font-size: 21px !important;
+}
+
+.ax-navbar .ax-logo-subtitle {
+  font-size: 9px !important;
+}
+
+.ax-navbar .ax-login {
+  font-size: 14px !important;
+}
+
+.ax-navbar .ax-launch-button {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   AQUAXCHANGE — FINAL HERO / NAVBAR POLISH
+   Final overrides: navbar size, cleaner AI animation,
+   smoother water routes, cards, rain and lightning.
+   ========================================================= */
+
+.nav-links a {
+  font-size: 15px !important;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.login-link {
+  font-size: 14px !important;
+}
+
+.launch-button {
+  font-size: 14px !important;
+  font-weight: 700;
+}
+
+.brand-name {
+  font-size: 22px !important;
+}
+
+.brand-tagline {
+  font-size: 9px !important;
+}
+
+.ax-hero-content p {
+  font-size: 18px !important;
+}
+
+.ax-eyebrow {
+  font-size: 13px !important;
+}
+
+/* Hide Watch Video even if it is still present in JSX */
+.ax-secondary-btn {
+  display: none !important;
+}
+
+/* =========================================================
+   RIGHT-SIDE WATER INTELLIGENCE
+   ========================================================= */
+
+.ax-hero-visual {
+  position: relative;
+  isolation: isolate;
+}
+
+.ax-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 68% 48%,
+      rgba(0, 220, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 82% 22%,
+      rgba(90, 180, 255, 0.08), transparent 28%);
+}
+
+/* AI core */
+.ax-ai {
+  width: 145px !important;
+  height: 145px !important;
+  background:
+    radial-gradient(circle at 50% 42%,
+      rgba(0, 225, 255, 0.32),
+      rgba(0, 55, 80, 0.88) 52%,
+      rgba(2, 14, 25, 0.96) 100%) !important;
+  box-shadow:
+    0 0 25px rgba(0, 220, 255, 0.18),
+    0 0 70px rgba(0, 180, 255, 0.10),
+    inset 0 0 30px rgba(0, 220, 255, 0.08);
+  animation: axCorePulse 4s ease-in-out infinite;
+}
+
+@keyframes axCorePulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow:
+      0 0 25px rgba(0, 220, 255, 0.18),
+      0 0 70px rgba(0, 180, 255, 0.10),
+      inset 0 0 30px rgba(0, 220, 255, 0.08);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.035);
+    box-shadow:
+      0 0 38px rgba(0, 220, 255, 0.32),
+      0 0 95px rgba(0, 180, 255, 0.16),
+      inset 0 0 38px rgba(0, 220, 255, 0.12);
+  }
+}
+
+.ax-ai-ring.ring1 {
+  inset: -18px !important;
+  border-color: rgba(0, 220, 255, 0.35) !important;
+}
+
+.ax-ai-ring.ring2 {
+  inset: -34px !important;
+  border-color: rgba(0, 220, 255, 0.18) !important;
+  animation: axOuterRing 18s linear infinite !important;
+}
+
+@keyframes axOuterRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   CURVED / FLOWING WATER ROUTES
+   ========================================================= */
+
+.ax-network {
+  z-index: 15 !important;
+  overflow: visible;
+}
+
+.ax-route {
+  fill: none !important;
+  stroke: rgba(0, 225, 255, 0.82) !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round;
+  stroke-dasharray: 3 15 !important;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 220, 255, 0.9))
+    drop-shadow(0 0 14px rgba(0, 200, 255, 0.35)) !important;
+  animation: axWaterRoute 2.8s linear infinite !important;
+}
+
+@keyframes axWaterRoute {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -72; }
+}
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.ax-particle {
+  width: 5px !important;
+  height: 5px !important;
+  background: #c8fbff !important;
+  box-shadow:
+    0 0 8px rgba(0, 225, 255, 0.95),
+    0 0 18px rgba(0, 210, 255, 0.55) !important;
+  animation-timing-function: ease-in-out !important;
+}
+
+/* =========================================================
+   INFO CARDS
+   ========================================================= */
+
+.ax-info-card {
+  min-width: 170px !important;
+  padding: 14px 16px !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(135deg,
+      rgba(3, 24, 38, 0.92),
+      rgba(2, 14, 25, 0.82)) !important;
+  border: 1px solid rgba(0, 220, 255, 0.42) !important;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(0, 190, 255, 0.05) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: axCardFloat 6s ease-in-out infinite;
+}
+
+.ax-info-card strong {
+  font-size: 12px !important;
+}
+
+.ax-info-card b {
+  font-size: 16px !important;
+}
+
+.ax-info-card span {
+  font-size: 9px !important;
+}
+
+@keyframes axCardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.card-reservoir { animation-delay: -1.2s; }
+.card-agriculture { animation-delay: -3.1s; }
+.card-city { animation-delay: -4.4s; }
+.card-industry { animation-delay: -2.2s; }
+
+/* =========================================================
+   RESERVOIR / WATER GLOW
+   ========================================================= */
+
+.ax-reservoir {
+  box-shadow:
+    0 0 20px rgba(0, 220, 255, 0.35),
+    0 0 55px rgba(0, 200, 255, 0.18);
+  animation: axReservoirPulse 4s ease-in-out infinite;
+}
+
+@keyframes axReservoirPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+.ax-waterfall {
+  animation: axWaterfallFlow 1.8s ease-in-out infinite;
+}
+
+@keyframes axWaterfallFlow {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scaleX(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.08);
+  }
+}
+
+/* =========================================================
+   FULL HERO RAIN
+   ========================================================= */
+
+.ax-global-rain {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 90 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  opacity: 0.72 !important;
+}
+
+.ax-global-rain span {
+  top: -100px !important;
+  width: 1px !important;
+  height: 45px !important;
+  background:
+    linear-gradient(180deg,
+      transparent,
+      rgba(180, 235, 255, 0.92) 45%,
+      rgba(0, 210, 255, 0.48)) !important;
+  box-shadow: 0 0 6px rgba(0, 220, 255, 0.38) !important;
+  animation-name: axFullScreenRain !important;
+}
+
+@keyframes axFullScreenRain {
+  0% {
+    transform: translate3d(0, -100px, 0) rotate(13deg);
+    opacity: 0;
+  }
+  8% { opacity: 0.82; }
+  85% { opacity: 0.62; }
+  100% {
+    transform: translate3d(-130px, 110vh, 0) rotate(13deg);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   FULL SCREEN LIGHTNING
+   ========================================================= */
+
+.ax-global-lightning {
+  z-index: 91 !important;
+  pointer-events: none !important;
+}
+
+.ax-lightning-flash {
+  inset: -10% !important;
+  background:
+    radial-gradient(ellipse at 74% 20%,
+      rgba(210, 240, 255, 0.18),
+      rgba(80, 180, 255, 0.055) 28%,
+      transparent 58%) !important;
+  animation: axSkyFlash 9s infinite !important;
+}
+
+@keyframes axSkyFlash {
+  0%, 62%, 100% { opacity: 0; }
+  63% { opacity: 0.85; }
+  63.35% { opacity: 0.05; }
+  64% { opacity: 0.48; }
+  64.45% { opacity: 0; }
+  65.2% { opacity: 0.25; }
+  65.5% { opacity: 0; }
+}
+
+.ax-lightning-glow {
+  width: 1200px !important;
+  height: 700px !important;
+  top: -250px !important;
+  left: 63% !important;
+  filter: blur(65px) !important;
+  background:
+    radial-gradient(ellipse,
+      rgba(150, 220, 255, 0.15),
+      rgba(0, 180, 255, 0.035) 42%,
+      transparent 72%) !important;
+  animation: axStormGlow 9s infinite !important;
+}
+
+@keyframes axStormGlow {
+  0%, 62%, 100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.86);
+  }
+  63% {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1);
+  }
+  64% { opacity: 0.12; }
+  65% { opacity: 0.55; }
+  66% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+/* Real mountain photo stays as the hero background */
+.ax-mountains {
+  display: none !important;
+}
+
+/* =========================================================
+   RESPONSIVE FINAL OVERRIDES
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .nav-links a {
+    font-size: 14px !important;
+  }
+
+  .ax-hero-content p {
+    font-size: 17px !important;
+  }
+}
+
+@media (max-width: 750px) {
+  .nav-links {
+    display: none !important;
+  }
+
+  .brand-name {
+    font-size: 19px !important;
+  }
+
+  .ax-hero-content p {
+    font-size: 16px !important;
+  }
+
+  .ax-ai {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  .ax-info-card {
+    transform: scale(0.82);
+  }
+
+  .ax-global-rain {
+    opacity: 0.48 !important;
+  }
+}
+
+
+/* =========================================================
+   AQUAXCHANGE — FINAL STATIC HERO POLISH
+   Remove the busy right-side motion and replace it with a
+   clean, premium, stable water-intelligence composition.
+   ========================================================= */
+
+/* ---------- LEFT SIDE: use the empty space better ---------- */
+
+.ax-hero-content h1 {
+  margin-top: 34px !important;
+}
+
+.ax-hero-content p {
+  margin-top: 38px !important;
+  max-width: 540px !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+/* Small supporting line below the description */
+.ax-hero-content p::after {
+  content: "Real-time allocation  •  AI-powered decisions  •  Sustainable water planning";
+  display: block;
+  margin-top: 22px;
+  color: rgba(0, 217, 255, 0.72);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  line-height: 1.7;
+}
+
+/* Push the CTA down slightly to balance the composition */
+.ax-hero-buttons {
+  margin-top: 42px !important;
+}
+
+
+/* =========================================================
+   RIGHT SIDE — REMOVE THE OLD BUSY ANIMATION
+   ========================================================= */
+
+/* Remove moving particles */
+.ax-particle {
+  display: none !important;
+}
+
+/* Remove animated network/X-shaped paths */
+.ax-network {
+  display: none !important;
+}
+
+/* Remove the old animated waterfall */
+.ax-waterfall {
+  display: none !important;
+}
+
+/* Cards remain, but become completely stable */
+.ax-info-card {
+  animation: none !important;
+  transform: none !important;
+}
+
+
+/* =========================================================
+   STATIC WATER INTELLIGENCE CORE
+   ========================================================= */
+
+.ax-ai {
+  width: 175px !important;
+  height: 175px !important;
+
+  left: 55% !important;
+  top: 51% !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(0, 235, 255, 0.34),
+      rgba(0, 70, 100, 0.78) 43%,
+      rgba(2, 17, 29, 0.96) 72%,
+      rgba(1, 10, 18, 0.98) 100%
+    ) !important;
+
+  border: 1px solid rgba(0, 225, 255, 0.8) !important;
+
+  box-shadow:
+    0 0 25px rgba(0, 220, 255, 0.30),
+    0 0 75px rgba(0, 190, 255, 0.16),
+    inset 0 0 45px rgba(0, 220, 255, 0.12) !important;
+
+  animation: none !important;
+}
+
+/* Keep the rings, but make them static and elegant */
+.ax-ai-ring {
+  animation: none !important;
+}
+
+.ax-ai-ring.ring1 {
+  inset: -18px !important;
+  border: 1px solid rgba(0, 220, 255, 0.30) !important;
+}
+
+.ax-ai-ring.ring2 {
+  inset: -36px !important;
+  border: 1px dashed rgba(0, 220, 255, 0.18) !important;
+  transform: none !important;
+}
+
+
+/* =========================================================
+   STATIC LIGHT HALO BEHIND THE CORE
+   ========================================================= */
+
+.ax-scene-glow {
+  width: 760px !important;
+  height: 760px !important;
+
+  left: 47% !important;
+  top: 3% !important;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 220, 255, 0.15) 0%,
+      rgba(0, 180, 255, 0.07) 28%,
+      rgba(0, 100, 180, 0.025) 48%,
+      transparent 70%
+    ) !important;
+
+  filter: blur(25px) !important;
+
+  animation: none !important;
+}
+
+
+/* =========================================================
+   STATIC GLASS CARDS — BETTER POSITIONING
+   ========================================================= */
+
+.card-reservoir {
+  top: 18% !important;
+  right: 34% !important;
+}
+
+.card-agriculture {
+  top: 38% !important;
+  right: 3% !important;
+}
+
+.card-industry {
+  bottom: 12% !important;
+  left: 27% !important;
+}
+
+.card-city {
+  bottom: 14% !important;
+  right: 5% !important;
+}
+
+
+/* Premium stable card appearance */
+.ax-info-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(4, 28, 44, 0.94),
+      rgba(2, 13, 24, 0.90)
+    ) !important;
+
+  border: 1px solid rgba(0, 220, 255, 0.38) !important;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.42),
+    0 0 24px rgba(0, 200, 255, 0.07) !important;
+
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+
+/* =========================================================
+   STATIC SCENE — NO MOVING DECORATION
+   ========================================================= */
+
+.ax-reservoir {
+  animation: none !important;
+}
+
+.ax-lake-shimmer {
+  animation: none !important;
+}
+
+.ax-slogan {
+  animation: none !important;
+}
+
+
+/* Keep rain because it is part of the atmosphere */
+.ax-global-rain {
+  opacity: 0.62 !important;
+}
+
+/* Lightning becomes an occasional subtle sky glow rather
+   than a distracting animated bolt. */
+.ax-global-lightning {
+  opacity: 0.18 !important;
+}
+
+.ax-lightning-flash,
+.ax-lightning-glow,
+.ax-bolt,
+.ax-lightning {
+  animation: none !important;
+}
+
+
+/* =========================================================
+   EXTRA STATIC WATER GLOW
+   ========================================================= */
+
+.ax-hero-visual::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 150px;
+  left: 48%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(0, 220, 255, 0.18),
+      rgba(0, 170, 230, 0.06) 42%,
+      transparent 72%
+    );
+
+  filter: blur(22px);
+  pointer-events: none;
+  z-index: 4;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .ax-hero-content p::after {
+    margin-top: 16px;
+  }
+
+  .ax-ai {
+    left: 50% !important;
+  }
+}
+
+@media (max-width: 750px) {
+  .ax-hero-content h1 {
+    margin-top: 28px !important;
+  }
+
+  .ax-hero-content p {
+    margin-top: 28px !important;
+  }
+
+  .ax-hero-content p::after {
+    font-size: 10px;
+  }
+
+  .ax-ai {
+    width: 135px !important;
+    height: 135px !important;
+  }
+}
+/* =========================================================
+   AQUAXCHANGE — NEW WATER INTELLIGENCE ANIMATION
+   ========================================================= */
+
+.water-flow-system {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   BASE WATER STREAM
+   --------------------------------------------------------- */
+
+.water-stream {
+  position: absolute;
+  width: 300px;
+  height: 160px;
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   PARTICLES
+   --------------------------------------------------------- */
+
+.water-stream span {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #6ff6ff;
+
+  box-shadow:
+    0 0 6px rgba(0, 235, 255, 1),
+    0 0 16px rgba(0, 220, 255, 0.8),
+    0 0 28px rgba(0, 180, 255, 0.35);
+
+  opacity: 0;
+
+  animation:
+    waterParticleTravel
+    3.8s
+    cubic-bezier(.45,0,.35,1)
+    infinite;
+}
+
+
+/* Different particles arrive at different times */
+
+.water-stream span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.water-stream span:nth-child(2) {
+  animation-delay: .75s;
+}
+
+.water-stream span:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+.water-stream span:nth-child(4) {
+  animation-delay: 2.25s;
+}
+
+.water-stream span:nth-child(5) {
+  animation-delay: 3s;
+}
+
+
+/* =========================================================
+   RESERVOIR → AI
+   ========================================================= */
+
+.stream-reservoir {
+  left: 43%;
+  top: 28%;
+
+  transform: rotate(28deg);
+}
+
+.stream-reservoir span {
+  left: 0;
+  top: 80px;
+}
+
+.stream-reservoir span:nth-child(1) {
+  --x: 250px;
+  --y: 25px;
+}
+
+.stream-reservoir span:nth-child(2) {
+  --x: 220px;
+  --y: 30px;
+}
+
+.stream-reservoir span:nth-child(3) {
+  --x: 190px;
+  --y: 35px;
+}
+
+.stream-reservoir span:nth-child(4) {
+  --x: 160px;
+  --y: 40px;
+}
+
+.stream-reservoir span:nth-child(5) {
+  --x: 130px;
+  --y: 45px;
+}
+
+
+/* =========================================================
+   AI → AGRICULTURE
+   ========================================================= */
+
+.stream-agriculture {
+  left: 55%;
+  top: 43%;
+
+  transform: rotate(-20deg);
+}
+
+.stream-agriculture span {
+  left: 0;
+  top: 80px;
+}
+
+.stream-agriculture span:nth-child(1) {
+  --x: 300px;
+  --y: -80px;
+}
+
+.stream-agriculture span:nth-child(2) {
+  --x: 255px;
+  --y: -68px;
+}
+
+.stream-agriculture span:nth-child(3) {
+  --x: 210px;
+  --y: -56px;
+}
+
+.stream-agriculture span:nth-child(4) {
+  --x: 165px;
+  --y: -44px;
+}
+
+.stream-agriculture span:nth-child(5) {
+  --x: 120px;
+  --y: -32px;
+}
+
+
+/* =========================================================
+   AI → INDUSTRY
+   ========================================================= */
+
+.stream-industry {
+  left: 47%;
+  top: 52%;
+
+  transform: rotate(145deg);
+}
+
+.stream-industry span {
+  left: 0;
+  top: 80px;
+}
+
+.stream-industry span:nth-child(1) {
+  --x: 230px;
+  --y: 35px;
+}
+
+.stream-industry span:nth-child(2) {
+  --x: 195px;
+  --y: 28px;
+}
+
+.stream-industry span:nth-child(3) {
+  --x: 160px;
+  --y: 22px;
+}
+
+.stream-industry span:nth-child(4) {
+  --x: 125px;
+  --y: 16px;
+}
+
+.stream-industry span:nth-child(5) {
+  --x: 90px;
+  --y: 10px;
+}
+
+
+/* =========================================================
+   AI → MUNICIPALITY
+   ========================================================= */
+
+.stream-city {
+  left: 56%;
+  top: 53%;
+
+  transform: rotate(25deg);
+}
+
+.stream-city span {
+  left: 0;
+  top: 80px;
+}
+
+.stream-city span:nth-child(1) {
+  --x: 270px;
+  --y: 55px;
+}
+
+.stream-city span:nth-child(2) {
+  --x: 230px;
+  --y: 48px;
+}
+
+.stream-city span:nth-child(3) {
+  --x: 190px;
+  --y: 40px;
+}
+
+.stream-city span:nth-child(4) {
+  --x: 150px;
+  --y: 32px;
+}
+
+.stream-city span:nth-child(5) {
+  --x: 110px;
+  --y: 24px;
+}
+
+
+/* =========================================================
+   PARTICLE MOVEMENT
+   ========================================================= */
+
+@keyframes waterParticleTravel {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate3d(0, 0, 0)
+      scale(.3);
+  }
+
+  12% {
+    opacity: 1;
+    transform:
+      translate3d(
+        calc(var(--x) * .12),
+        calc(var(--y) * .12),
+        0
+      )
+      scale(1);
+  }
+
+  75% {
+    opacity: .9;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        var(--x),
+        var(--y),
+        0
+      )
+      scale(.15);
+  }
+}
+
+
+/* =========================================================
+   AI CORE — PREMIUM PULSE
+   ========================================================= */
+
+.ax-ai {
+  animation: aiIntelligencePulse 4s ease-in-out infinite !important;
+}
+
+@keyframes aiIntelligencePulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 25px rgba(0, 220, 255, .25),
+      0 0 65px rgba(0, 200, 255, .12),
+      inset 0 0 30px rgba(0, 220, 255, .08);
+  }
+
+  50% {
+    box-shadow:
+      0 0 40px rgba(0, 225, 255, .42),
+      0 0 100px rgba(0, 190, 255, .18),
+      inset 0 0 45px rgba(0, 220, 255, .15);
+  }
+}
+
+
+/* =========================================================
+   OUTER AI RINGS
+   ========================================================= */
+
+.ax-ai-ring.ring1 {
+  animation:
+    intelligenceRing1
+    8s
+    linear
+    infinite !important;
+}
+
+.ax-ai-ring.ring2 {
+  animation:
+    intelligenceRing2
+    13s
+    linear
+    infinite !important;
+}
+
+@keyframes intelligenceRing1 {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes intelligenceRing2 {
+
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+
+/* =========================================================
+   RESERVOIR — SUBTLE ENERGY
+   ========================================================= */
+
+.ax-reservoir {
+  animation:
+    reservoirGlow
+    4s
+    ease-in-out
+    infinite !important;
+}
+
+@keyframes reservoirGlow {
+
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.15);
+  }
+}
+
+
+/* =========================================================
+   CARDS — STATIC
+   ========================================================= */
+
+.ax-info-card {
+  animation: none !important;
+  transform: none !important;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+.ax-info-card:hover {
+  transform: translateY(-5px) !important;
+
+  border-color:
+    rgba(0, 230, 255, .75) !important;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, .45),
+    0 0 30px rgba(0, 220, 255, .15) !important;
+}
