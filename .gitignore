@@ -1,7 +1,4 @@
-# =========================
 # Python / Backend
-# =========================
-
 .venv/
 venv/
 __pycache__/
@@ -13,34 +10,17 @@ __pycache__/
 .env.*
 !.env.example
 
-
-# =========================
 # Next.js / Frontend
-# =========================
-
 node_modules/
 .next/
 out/
 dist/
-
-# Next.js build cache
 .turbo/
 
-# Environment variables
-frontend/.env
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
-frontend/.env.production.local
-
-
-# =========================
-# IDE / Editor
-# =========================
-
+# IDE
 .vscode/
 .idea/
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
