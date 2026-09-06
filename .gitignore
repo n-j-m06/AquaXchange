@@ -1,0 +1,46 @@
+# =========================
+# Python / Backend
+# =========================
+
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+
+# =========================
+# Next.js / Frontend
+# =========================
+
+node_modules/
+.next/
+out/
+dist/
+
+# Next.js build cache
+.turbo/
+
+# Environment variables
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+
+# =========================
+# IDE / Editor
+# =========================
+
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
