@@ -4,7 +4,7 @@ import websockets
 
 async def test():
 
-    uri = "ws://127.0.0.1:8000/ws/allocations"
+   uri = "wss://aquaxchange-backend.onrender.com/ws/allocations"
 
     async with websockets.connect(uri) as websocket:
 

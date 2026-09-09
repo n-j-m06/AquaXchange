@@ -64,10 +64,9 @@ def create_water_passport(
 
         # Generate verification URL
         verification_url = (
-            f"http://127.0.0.1:8000/"
-            f"water-passports/verify/"
-            f"{existing.passport_code}"
-        )
+    f"https://aquaxchange-backend.onrender.com/"
+    f"water-passports/verify/"
+)
 
         # Generate QR code
         qr = qrcode.make(verification_url)
@@ -121,10 +120,10 @@ def create_water_passport(
     # ========================================================
 
     verification_url = (
-        f"http://127.0.0.1:8000/"
-        f"water-passports/verify/"
-        f"{passport.passport_code}"
-    )
+    f"https://aquaxchange-backend.onrender.com/"
+    f"water-passports/verify/"
+    f"{passport.passport_code}"
+)
 
     # ========================================================
     # 8. Generate QR code

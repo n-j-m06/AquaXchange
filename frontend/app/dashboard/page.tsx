@@ -124,7 +124,7 @@ export default function Dashboard() {
         setStatsError("");
 
         const response = await fetch(
-          "http://127.0.0.1:8000/dashboard/stats",
+          `${process.env.NEXT_PUBLIC_API_URL}/dashboard/stats",
           {
             method: "GET",
             headers: {
