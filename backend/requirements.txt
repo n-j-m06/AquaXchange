@@ -13,3 +13,4 @@ numpy
 scikit-learn
 xgboost
 pydantic-settings
+qrcode
