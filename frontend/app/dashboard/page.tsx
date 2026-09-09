@@ -16,33 +16,34 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import DashboardHeader from "@/app/dashboard/DashboardHeader";
-const stats = [
+
+const statConfig = [
   {
     title: "Available Water",
-    value: "12.4M",
+    key: "total_available_water",
     unit: "Litres",
-    change: "+8.4%",
+    change: "Live",
     icon: Droplets,
   },
   {
     title: "Current Demand",
-    value: "9.8M",
+    key: "total_requested_water",
     unit: "Litres",
-    change: "+3.2%",
+    change: "Live",
     icon: TrendingUp,
   },
   {
     title: "Water Allocated",
-    value: "8.7M",
+    key: "total_allocated_water",
     unit: "Litres",
-    change: "88.7%",
+    change: "Live",
     icon: Activity,
   },
   {
     title: "Avg. Quality",
-    value: "94",
+    key: "average_quality_score",
     unit: "Quality Score",
-    change: "+2.1%",
+    change: "Live",
     icon: Waves,
   },
 ];
@@ -89,6 +90,16 @@ const alerts = [
 export default function Dashboard() {
   const [userName, setUserName] = useState("Niranjan");
 
+  const [dashboardStats, setDashboardStats] = useState({
+    total_available_water: 0,
+    total_requested_water: 0,
+    total_allocated_water: 0,
+    average_quality_score: 0,
+  });
+
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [statsError, setStatsError] = useState("");
+
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem("aquaxchange_user");
@@ -104,6 +115,100 @@ export default function Dashboard() {
       // Keep default name if stored user data is unavailable
     }
   }, []);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchDashboardStats = async () => {
+      try {
+        setStatsError("");
+
+        const response = await fetch(
+          "http://127.0.0.1:8000/dashboard/stats",
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            `Dashboard stats request failed: ${response.status}`
+          );
+        }
+
+        const data = await response.json();
+
+        if (mounted) {
+          setDashboardStats({
+            total_available_water:
+              Number(data.total_available_water) || 0,
+
+            total_requested_water:
+              Number(data.total_requested_water) || 0,
+
+            total_allocated_water:
+              Number(data.total_allocated_water) || 0,
+
+            average_quality_score:
+              Number(data.average_quality_score) || 0,
+          });
+
+          setStatsLoading(false);
+        }
+      } catch (error) {
+        console.error("Failed to load dashboard stats:", error);
+
+        if (mounted) {
+          setStatsError("Backend unavailable");
+          setStatsLoading(false);
+        }
+      }
+    };
+
+    fetchDashboardStats();
+
+    const interval = window.setInterval(
+      fetchDashboardStats,
+      30000
+    );
+
+    return () => {
+      mounted = false;
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  const formatLitres = (value: number) => {
+    if (value >= 1000000) {
+      return `${(value / 1000000).toFixed(1)}M`;
+    }
+
+    if (value >= 1000) {
+      return `${(value / 1000).toFixed(1)}K`;
+    }
+
+    return value.toLocaleString();
+  };
+
+  const liveStats = statConfig.map((stat) => ({
+    ...stat,
+
+    value: statsLoading
+      ? "..."
+      : stat.key === "average_quality_score"
+        ? dashboardStats.average_quality_score.toFixed(1)
+        : formatLitres(
+            dashboardStats[
+              stat.key as
+                | "total_available_water"
+                | "total_requested_water"
+                | "total_allocated_water"
+            ]
+          ),
+  }));
 
   const initials = userName
     .split(" ")
@@ -135,7 +240,6 @@ export default function Dashboard() {
 
       <section className="dashboard-content">
 
-
         {/* ===================================================
             HEADER
             =================================================== */}
@@ -160,17 +264,23 @@ export default function Dashboard() {
 
           </div>
 
-
-          <button className="refresh-button">
+          <button
+            className="refresh-button"
+            type="button"
+            onClick={() => window.location.reload()}
+            title={
+              statsError ||
+              "Dashboard data refreshes automatically every 30 seconds"
+            }
+          >
 
             <Activity size={16} />
 
-            Live Data
+            {statsError ? "Backend Offline" : "Live Data"}
 
           </button>
 
         </div>
-
 
         {/* ===================================================
             STAT CARDS
@@ -178,7 +288,7 @@ export default function Dashboard() {
 
         <div className="dashboard-stats">
 
-          {stats.map((stat) => {
+          {liveStats.map((stat) => {
 
             const Icon = stat.icon;
 
@@ -201,11 +311,9 @@ export default function Dashboard() {
 
                 </div>
 
-
                 <p>
                   {stat.title}
                 </p>
-
 
                 <div className="stat-value">
 
@@ -225,20 +333,17 @@ export default function Dashboard() {
 
         </div>
 
-
         {/* ===================================================
             MAIN GRID
             =================================================== */}
 
         <div className="dashboard-main-grid">
 
-
           {/* =================================================
               WATER ALLOCATION MAP
               ================================================= */}
 
           <div className="dashboard-panel map-panel">
-
 
             <div className="panel-header">
 
@@ -254,7 +359,6 @@ export default function Dashboard() {
 
               </div>
 
-
               <button className="panel-action">
 
                 Explore Map
@@ -265,13 +369,11 @@ export default function Dashboard() {
 
             </div>
 
-
             {/* =================================================
                 ADVANCED WATER NETWORK
                 ================================================= */}
 
             <div className="water-map">
-
 
               {/* MAP BACKGROUND */}
 
@@ -280,7 +382,6 @@ export default function Dashboard() {
               <div className="map-glow" />
 
               <div className="map-vignette" />
-
 
               {/* =================================================
                   SVG NETWORK
@@ -303,11 +404,12 @@ export default function Dashboard() {
                   >
 
                     <stop offset="0%" />
+
                     <stop offset="45%" />
+
                     <stop offset="100%" />
 
                   </linearGradient>
-
 
                   <filter id="flowGlow">
 
@@ -328,7 +430,6 @@ export default function Dashboard() {
 
                 </defs>
 
-
                 {/* RESERVOIR → AI */}
 
                 <path
@@ -336,7 +437,6 @@ export default function Dashboard() {
                   d="M 150 110 C 270 125, 345 210, 475 255"
                   className="network-path"
                 />
-
 
                 {/* AI → AGRICULTURE */}
 
@@ -346,7 +446,6 @@ export default function Dashboard() {
                   className="network-path"
                 />
 
-
                 {/* AI → INDUSTRY */}
 
                 <path
@@ -355,7 +454,6 @@ export default function Dashboard() {
                   className="network-path"
                 />
 
-
                 {/* AI → MUNICIPALITY */}
 
                 <path
@@ -363,7 +461,6 @@ export default function Dashboard() {
                   d="M 525 275 C 650 315, 730 390, 850 415"
                   className="network-path"
                 />
-
 
                 {/* =================================================
                     MOVING WATER PARTICLES
@@ -385,7 +482,6 @@ export default function Dashboard() {
 
                 </circle>
 
-
                 <circle
                   r="3"
                   className="flow-particle"
@@ -403,7 +499,6 @@ export default function Dashboard() {
 
                 </circle>
 
-
                 <circle
                   r="4"
                   className="flow-particle"
@@ -419,7 +514,6 @@ export default function Dashboard() {
                   </animateMotion>
 
                 </circle>
-
 
                 <circle
                   r="3"
@@ -438,7 +532,6 @@ export default function Dashboard() {
 
                 </circle>
 
-
                 <circle
                   r="4"
                   className="flow-particle"
@@ -454,7 +547,6 @@ export default function Dashboard() {
                   </animateMotion>
 
                 </circle>
-
 
                 <circle
                   r="3"
@@ -473,7 +565,6 @@ export default function Dashboard() {
 
                 </circle>
 
-
                 <circle
                   r="4"
                   className="flow-particle"
@@ -489,7 +580,6 @@ export default function Dashboard() {
                   </animateMotion>
 
                 </circle>
-
 
                 <circle
                   r="3"
@@ -509,7 +599,6 @@ export default function Dashboard() {
                 </circle>
 
               </svg>
-
 
               {/* =================================================
                   RESERVOIR NODE
@@ -541,7 +630,6 @@ export default function Dashboard() {
 
               </div>
 
-
               {/* =================================================
                   AGRICULTURE NODE
                   ================================================= */}
@@ -571,7 +659,6 @@ export default function Dashboard() {
                 </div>
 
               </div>
-
 
               {/* =================================================
                   INDUSTRY NODE
@@ -603,7 +690,6 @@ export default function Dashboard() {
 
               </div>
 
-
               {/* =================================================
                   MUNICIPALITY NODE
                   ================================================= */}
@@ -634,7 +720,6 @@ export default function Dashboard() {
 
               </div>
 
-
               {/* =================================================
                   CENTRAL AI CORE
                   ================================================= */}
@@ -659,7 +744,6 @@ export default function Dashboard() {
 
               </div>
 
-
               {/* =================================================
                   FLOW INFORMATION
                   ================================================= */}
@@ -680,11 +764,9 @@ export default function Dashboard() {
                 1.7M L
               </div>
 
-
             </div>
 
           </div>
-
 
           {/* =================================================
               AI RECOMMENDATION
@@ -716,7 +798,6 @@ export default function Dashboard() {
 
             </div>
 
-
             <div className="recommendation">
 
               <div className="recommendation-icon">
@@ -745,7 +826,6 @@ export default function Dashboard() {
 
             </div>
 
-
             <div className="recommendation-amount">
 
               <strong>
@@ -757,7 +837,6 @@ export default function Dashboard() {
               </span>
 
             </div>
-
 
             <div className="confidence">
 
@@ -781,7 +860,6 @@ export default function Dashboard() {
 
             </div>
 
-
             <div className="reason-list">
 
               <div>
@@ -796,7 +874,6 @@ export default function Dashboard() {
 
               </div>
 
-
               <div>
 
                 <span>
@@ -809,7 +886,6 @@ export default function Dashboard() {
 
               </div>
 
-
               <div>
 
                 <span>
@@ -821,7 +897,6 @@ export default function Dashboard() {
                 </strong>
 
               </div>
-
 
               <div>
 
@@ -837,7 +912,6 @@ export default function Dashboard() {
 
             </div>
 
-
             <button className="recommendation-button">
 
               View Full Recommendation
@@ -850,13 +924,11 @@ export default function Dashboard() {
 
         </div>
 
-
         {/* ===================================================
             LOWER GRID
             =================================================== */}
 
         <div className="dashboard-lower-grid">
-
 
           {/* =================================================
               DEMAND BY SECTOR
@@ -880,7 +952,6 @@ export default function Dashboard() {
 
             </div>
 
-
             <div className="sector-list">
 
               {sectors.map((sector) => {
@@ -898,7 +969,6 @@ export default function Dashboard() {
                       <Icon size={18} />
                     </div>
 
-
                     <div className="sector-info">
 
                       <div className="sector-name">
@@ -913,7 +983,6 @@ export default function Dashboard() {
 
                       </div>
 
-
                       <div className="sector-bar">
 
                         <div
@@ -925,7 +994,6 @@ export default function Dashboard() {
                       </div>
 
                     </div>
-
 
                     <span className="sector-percent">
                       {sector.percentage}%
@@ -940,7 +1008,6 @@ export default function Dashboard() {
             </div>
 
           </div>
-
 
           {/* =================================================
               RECENT ALERTS
@@ -967,7 +1034,6 @@ export default function Dashboard() {
               </span>
 
             </div>
-
 
             <div className="alerts-list">
 
@@ -998,7 +1064,6 @@ export default function Dashboard() {
 
                   </div>
 
-
                   <div className="alert-content">
 
                     <strong>
@@ -1015,7 +1080,6 @@ export default function Dashboard() {
 
                   </div>
 
-
                   <span
                     className={`alert-severity ${alert.severity.toLowerCase()}`}
                   >
@@ -1030,9 +1094,7 @@ export default function Dashboard() {
 
           </div>
 
-
         </div>
-
 
       </section>
 

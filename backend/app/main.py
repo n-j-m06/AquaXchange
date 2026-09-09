@@ -14,7 +14,6 @@ from app.db.database import Base, engine
 from app.db import base
 from sqlalchemy import text
 from fastapi import FastAPI
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 Base.metadata.create_all(bind=engine)
 app = FastAPI(

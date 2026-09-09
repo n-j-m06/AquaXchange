@@ -3,6 +3,8 @@ from sqlalchemy.orm import Session
 
 from app.db.database import get_db
 from app.models.water_request import WaterRequest
+from app.models.user import User
+
 
 router = APIRouter(
     prefix="/water-requests",
@@ -39,5 +41,31 @@ def create_water_request(
 
 
 @router.get("/")
-def get_water_requests(db: Session = Depends(get_db)):
-    return db.query(WaterRequest).all()
+def get_water_requests(
+    db: Session = Depends(get_db)
+):
+    requests = (
+        db.query(WaterRequest, User.role)
+        .outerjoin(
+            User,
+            WaterRequest.requester_id == User.id
+        )
+        .all()
+    )
+
+    return [
+        {
+            "id": request.id,
+            "requester_id": request.requester_id,
+            "water_type": request.water_type,
+            "quantity_required": request.quantity_required,
+            "priority": request.priority,
+            "latitude": request.latitude,
+            "longitude": request.longitude,
+            "purpose": request.purpose,
+            "status": request.status,
+            "role": role,
+            "created_at": request.created_at,
+        }
+        for request, role in requests
+    ]
