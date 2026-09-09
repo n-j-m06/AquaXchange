@@ -25,7 +25,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://aquaxchange-backend.onrender.com",
+        "https://aqua-xchange-git-main-niranjan3.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
