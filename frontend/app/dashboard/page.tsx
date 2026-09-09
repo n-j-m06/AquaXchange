@@ -123,8 +123,8 @@ export default function Dashboard() {
       try {
         setStatsError("");
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/dashboard/stats",
+       const response = await fetch(
+  `${process.env.NEXT_PUBLIC_API_URL}/dashboard/stats`,
           {
             method: "GET",
             headers: {
