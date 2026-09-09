@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AquaXchange Frontend
 
-## Getting Started
+### Smarter Water. Smarter Decisions.
 
-First, run the development server:
+The AquaXchange frontend is a modern, interactive web application built with Next.js and React. It provides a centralized interface for monitoring water resources, analyzing demand, viewing AI-assisted allocation recommendations, and managing water-related decision-making.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+AquaXchange is an AI-powered intelligent water exchange and decision-support platform designed to help organizations make smarter and more sustainable water allocation decisions.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The frontend provides an intuitive dashboard through which users can:
 
-## Learn More
+- Monitor available water resources
+- View water demand across different sectors
+- Explore water sources through an interactive map
+- View AI-powered allocation recommendations
+- Analyze water demand and network insights
+- Monitor water allocation activity
+- Manage water requests
+- Access role-based application functionality
 
-To learn more about Next.js, take a look at the following resources:
+The application is designed for sectors including:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Agriculture
+- Industry
+- Municipalities
+- Government
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🏠 Landing Page
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The AquaXchange landing page introduces the platform and its purpose through an interactive and animated interface.
+
+Features include:
+
+- AquaXchange branding
+- Project tagline
+- Animated navigation
+- AI-powered water management messaging
+- Water sustainability messaging
+- Responsive design
+
+---
+
+## 🔐 Authentication
+
+The frontend provides dedicated authentication interfaces for users.
+
+### Login
+
+Users can log in using their registered:
+
+- Email
+- Password
+
+After successful authentication, users are redirected to the dashboard.
+
+### Registration
+
+New users can create an account by providing:
+
+- Name
+- Email
+- Password
+- Role
+- Organization
+- Phone number
+
+Supported roles include:
+
+```text
+FARMER
+INDUSTRY
+MUNICIPALITY
+GOVERNMENT
