@@ -19,6 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import DashboardHeader from "@/app/dashboard/DashboardHeader";
 
 type DemandType = "municipality" | "agriculture" | "industry";
 
@@ -35,7 +36,6 @@ type DemandRequest = {
   status: "Pending" | "Partially Allocated" | "Allocated";
   detail: string;
 };
-
 const demandRequests: DemandRequest[] = [
   {
     id: 1,
@@ -162,35 +162,7 @@ export default function DemandPage() {
 
   return (
     <main className="demand-page">
-      {/* NAVBAR */}
-      <nav className="dashboard-nav">
-        <div className="dashboard-brand">
-          <div className="brand-mark">
-            <Droplets size={20} />
-          </div>
-
-          <div>
-            <div className="brand-name">AquaXchange</div>
-            <div className="brand-subtitle">Water Intelligence</div>
-          </div>
-        </div>
-
-        <div className="dashboard-links">
-          <a href="/dashboard">Overview</a>
-          <a href="/dashboard/map">Water Map</a>
-          <a href="/dashboard/insights">AI Insights</a>
-          <a href="/dashboard/sources">Sources</a>
-          <a className="active" href="/dashboard/demand">
-            Demand
-          </a>
-        </div>
-
-        <div className="system-status">
-          <span className="status-dot" />
-          System Online
-        </div>
-      </nav>
-
+      <DashboardHeader />
       {/* CONTENT */}
       <section className="demand-content">
         <div className="demand-heading">

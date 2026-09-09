@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, ArrowUpRight, Droplets } from "lucide-react";
+import { Droplets } from "lucide-react";
 
 export default function Navbar() {
   return (
@@ -29,40 +29,117 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* NAVIGATION */}
+      {/* PROJECT INFORMATION TICKER */}
 
-      <div className="nav-links">
-        <a href="#platform">Platform</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#technology">Technology</a>
-        <a href="#impact">Impact</a>
-        <a href="#about">About</a>
+      <div className="nav-ticker">
+        <div className="nav-ticker-track">
+          <span>AI-POWERED WATER EXCHANGE</span>
+          <b>•</b>
+
+          <span>SMART WATER ALLOCATION</span>
+          <b>•</b>
+
+          <span>WATER DEMAND FORECASTING</span>
+          <b>•</b>
+
+          <span>RESERVOIRS</span>
+          <b>•</b>
+
+          <span>AGRICULTURE</span>
+          <b>•</b>
+
+          <span>INDUSTRY</span>
+          <b>•</b>
+
+          <span>MUNICIPALITIES</span>
+          <b>•</b>
+
+          <span>AI DECISION SUPPORT</span>
+          <b>•</b>
+
+          <span>SUSTAINABLE WATER MANAGEMENT</span>
+
+          {/* DUPLICATE FOR SEAMLESS LOOP */}
+
+          <span>AI-POWERED WATER EXCHANGE</span>
+          <b>•</b>
+
+          <span>SMART WATER ALLOCATION</span>
+          <b>•</b>
+
+          <span>WATER DEMAND FORECASTING</span>
+          <b>•</b>
+
+          <span>RESERVOIRS</span>
+          <b>•</b>
+
+          <span>AGRICULTURE</span>
+          <b>•</b>
+
+          <span>INDUSTRY</span>
+          <b>•</b>
+
+          <span>MUNICIPALITIES</span>
+          <b>•</b>
+
+          <span>AI DECISION SUPPORT</span>
+          <b>•</b>
+
+          <span>SUSTAINABLE WATER MANAGEMENT</span>
+        </div>
       </div>
 
-      {/* RIGHT */}
+      {/* SAVE WATER MESSAGE */}
 
-      <div className="nav-actions">
+      <div className="nav-water-message">
+        <div className="nav-water-drops">
+          <motion.span
+            animate={{
+              y: [0, 10, 0],
+              opacity: [0.35, 1, 0.35],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
 
-        <Search size={20} />
+          <motion.span
+            animate={{
+              y: [0, 13, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              delay: 0.5,
+              ease: "easeInOut",
+            }}
+          />
 
-        <div className="nav-divider" />
+          <motion.span
+            animate={{
+              y: [0, 8, 0],
+              opacity: [0.3, 0.9, 0.3],
+            }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              delay: 0.9,
+              ease: "easeInOut",
+            }}
+          />
+        </div>
 
-        <a className="login-link">
-          Login
-        </a>
+        <div className="nav-water-icon">
+          <Droplets size={17} strokeWidth={2} />
+        </div>
 
-        <motion.button
-          whileHover={{
-            scale: 1.04,
-            boxShadow: "0 0 35px rgba(0,210,255,.45)",
-          }}
-          whileTap={{ scale: 0.97 }}
-          className="launch-button"
-        >
-          Launch Platform
-          <ArrowUpRight size={18} />
-        </motion.button>
-
+        <div className="nav-water-text">
+          <span>SAVE WATER</span>
+          <strong>SAVE LIFE</strong>
+        </div>
       </div>
     </motion.nav>
   );

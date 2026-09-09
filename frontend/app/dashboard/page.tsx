@@ -12,8 +12,10 @@ import {
   Brain,
   ArrowUpRight,
   Waves,
+  LogOut,
 } from "lucide-react";
-
+import { useEffect, useState } from "react";
+import DashboardHeader from "@/app/dashboard/DashboardHeader";
 const stats = [
   {
     title: "Available Water",
@@ -85,6 +87,39 @@ const alerts = [
 ];
 
 export default function Dashboard() {
+  const [userName, setUserName] = useState("Niranjan");
+
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem("aquaxchange_user");
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+
+        if (user?.name) {
+          setUserName(user.name);
+        }
+      }
+    } catch {
+      // Keep default name if stored user data is unavailable
+    }
+  }, []);
+
+  const initials = userName
+    .split(" ")
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+  const handleLogout = () => {
+    localStorage.removeItem("aquaxchange_token");
+    localStorage.removeItem("aquaxchange_user");
+
+    window.location.href = "/";
+  };
+
   return (
     <main className="dashboard-page">
 
@@ -92,66 +127,7 @@ export default function Dashboard() {
           TOP NAVIGATION
           ===================================================== */}
 
-      <header className="dashboard-nav">
-
-        <div className="dashboard-brand">
-
-          <div className="dashboard-logo">
-            <Droplets size={21} />
-          </div>
-
-          <div>
-            <div className="dashboard-brand-name">
-              Aqua<span>X</span>change
-            </div>
-
-            <div className="dashboard-brand-tagline">
-              SMARTER WATER. SMARTER DECISIONS.
-            </div>
-          </div>
-
-        </div>
-
-
-        <nav className="dashboard-links">
-
-          <a className="active" href="/dashboard">
-            Overview
-          </a>
-
-          <a href="/dashboard/map">
-            Water Map
-          </a>
-
-          <a href="/dashboard/insights">
-            AI Insights
-          </a>
-
-          <a href="/dashboard/sources">
-            Sources
-          </a>
-
-          <a href="/dashboard/demand">
-            Demand
-          </a>
-
-        </nav>
-
-
-        <div className="dashboard-user">
-
-          <div className="status-dot" />
-
-          <span>System Online</span>
-
-          <div className="user-avatar">
-            AX
-          </div>
-
-        </div>
-
-      </header>
-
+      <DashboardHeader />
 
       {/* =====================================================
           DASHBOARD CONTENT
@@ -325,9 +301,11 @@ export default function Dashboard() {
                     x2="100%"
                     y2="0%"
                   >
+
                     <stop offset="0%" />
                     <stop offset="45%" />
                     <stop offset="100%" />
+
                   </linearGradient>
 
 
@@ -390,7 +368,6 @@ export default function Dashboard() {
                 {/* =================================================
                     MOVING WATER PARTICLES
                     ================================================= */}
-
 
                 <circle
                   r="4"
@@ -543,11 +520,8 @@ export default function Dashboard() {
                 <div className="node-pulse" />
 
                 <div className="node-icon">
-
                   <Droplets size={19} />
-
                 </div>
-
 
                 <div className="node-details">
 
@@ -577,11 +551,8 @@ export default function Dashboard() {
                 <div className="node-pulse" />
 
                 <div className="node-icon">
-
                   <Sprout size={18} />
-
                 </div>
-
 
                 <div className="node-details">
 
@@ -611,11 +582,8 @@ export default function Dashboard() {
                 <div className="node-pulse" />
 
                 <div className="node-icon">
-
                   <Factory size={18} />
-
                 </div>
-
 
                 <div className="node-details">
 
@@ -645,11 +613,8 @@ export default function Dashboard() {
                 <div className="node-pulse" />
 
                 <div className="node-icon">
-
                   <Building2 size={18} />
-
                 </div>
-
 
                 <div className="node-details">
 
@@ -682,7 +647,6 @@ export default function Dashboard() {
 
                 <div className="ai-ring ring-three" />
 
-
                 <div className="ai-core-inner">
 
                   <Brain size={25} />
@@ -704,16 +668,13 @@ export default function Dashboard() {
                 2.4M L
               </div>
 
-
               <div className="flow-label label-agriculture">
                 1.8M L
               </div>
 
-
               <div className="flow-label label-industry">
                 2.4M L
               </div>
-
 
               <div className="flow-label label-city">
                 1.7M L
@@ -731,7 +692,6 @@ export default function Dashboard() {
 
           <div className="dashboard-panel ai-panel">
 
-
             <div className="panel-header">
 
               <div>
@@ -746,7 +706,6 @@ export default function Dashboard() {
 
               </div>
 
-
               <div className="ai-status">
 
                 <span />
@@ -760,13 +719,9 @@ export default function Dashboard() {
 
             <div className="recommendation">
 
-
               <div className="recommendation-icon">
-
                 <Brain size={24} />
-
               </div>
-
 
               <div>
 
@@ -788,7 +743,6 @@ export default function Dashboard() {
 
               </div>
 
-
             </div>
 
 
@@ -807,7 +761,6 @@ export default function Dashboard() {
 
             <div className="confidence">
 
-
               <div className="confidence-header">
 
                 <span>
@@ -820,7 +773,6 @@ export default function Dashboard() {
 
               </div>
 
-
               <div className="confidence-bar">
 
                 <div />
@@ -831,7 +783,6 @@ export default function Dashboard() {
 
 
             <div className="reason-list">
-
 
               <div>
 
@@ -884,7 +835,6 @@ export default function Dashboard() {
 
               </div>
 
-
             </div>
 
 
@@ -895,7 +845,6 @@ export default function Dashboard() {
               <ArrowUpRight size={16} />
 
             </button>
-
 
           </div>
 
@@ -914,7 +863,6 @@ export default function Dashboard() {
               ================================================= */}
 
           <div className="dashboard-panel sector-panel">
-
 
             <div className="panel-header">
 
@@ -947,9 +895,7 @@ export default function Dashboard() {
                   >
 
                     <div className="sector-icon">
-
                       <Icon size={18} />
-
                     </div>
 
 
@@ -982,9 +928,7 @@ export default function Dashboard() {
 
 
                     <span className="sector-percent">
-
                       {sector.percentage}%
-
                     </span>
 
                   </div>
@@ -1004,9 +948,7 @@ export default function Dashboard() {
 
           <div className="dashboard-panel alerts-panel">
 
-
             <div className="panel-header">
-
 
               <div>
 
@@ -1020,17 +962,14 @@ export default function Dashboard() {
 
               </div>
 
-
               <span className="alert-count">
                 3 active
               </span>
-
 
             </div>
 
 
             <div className="alerts-list">
-
 
               {alerts.map((alert) => (
 
@@ -1038,7 +977,6 @@ export default function Dashboard() {
                   className="alert-item"
                   key={alert.title}
                 >
-
 
                   <div
                     className={`alert-icon ${alert.severity.toLowerCase()}`}
@@ -1067,7 +1005,6 @@ export default function Dashboard() {
                       {alert.title}
                     </strong>
 
-
                     <span>
 
                       <MapPin size={12} />
@@ -1082,16 +1019,12 @@ export default function Dashboard() {
                   <span
                     className={`alert-severity ${alert.severity.toLowerCase()}`}
                   >
-
                     {alert.severity}
-
                   </span>
-
 
                 </div>
 
               ))}
-
 
             </div>
 

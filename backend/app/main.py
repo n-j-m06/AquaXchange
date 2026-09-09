@@ -14,11 +14,22 @@ from app.db.database import Base, engine
 from app.db import base
 from sqlalchemy import text
 from fastapi import FastAPI
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="AquaXChange API",
     description="AI Powered Intelligent Water Exchange and Decision Support Platform",
     version="1.0.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 app.include_router(allocation_ws_router)
 app.include_router(auth_router)

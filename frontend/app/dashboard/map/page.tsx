@@ -15,7 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-
+import DashboardHeader from "@/app/dashboard/DashboardHeader";
 type LocationType =
   | "reservoir"
   | "agriculture"
@@ -151,71 +151,7 @@ export default function WaterMapPage() {
           NAVIGATION
           ===================================================== */}
 
-      <header className="dashboard-nav">
-
-        <div className="dashboard-brand">
-
-          <div className="dashboard-logo">
-            <Droplets size={21} />
-          </div>
-
-          <div>
-            <div className="dashboard-brand-name">
-              Aqua<span>X</span>change
-            </div>
-
-            <div className="dashboard-brand-tagline">
-              SMARTER WATER. SMARTER DECISIONS.
-            </div>
-          </div>
-
-        </div>
-
-
-        <nav className="dashboard-links">
-
-          <a href="/dashboard">
-            Overview
-          </a>
-
-          <a
-            className="active"
-            href="/dashboard/map"
-          >
-            Water Map
-          </a>
-
-          <a href="/dashboard/insights">
-            AI Insights
-          </a>
-
-          <a href="/dashboard/sources">
-            Sources
-          </a>
-
-          <a href="/dashboard/demand">
-            Demand
-          </a>
-
-        </nav>
-
-
-        <div className="dashboard-user">
-
-          <div className="status-dot" />
-
-          <span>
-            System Online
-          </span>
-
-          <div className="user-avatar">
-            AX
-          </div>
-
-        </div>
-
-      </header>
-
+      <DashboardHeader />
 
       {/* =====================================================
           PAGE CONTENT
