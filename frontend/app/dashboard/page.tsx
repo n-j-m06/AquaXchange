@@ -292,7 +292,33 @@ const [iotError, setIotError] = useState("");
 
     window.location.href = "/";
   };
+  const runPump = async (command: string) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/iot/pump-command`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          device_id: "esp32-reservoir-01",
+          command,
+        }),
+      }
+    );
 
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.detail || "Pump command failed");
+    }
+
+    console.log("Pump command sent:", data);
+  } catch (error) {
+    console.error("Pump control error:", error);
+  }
+};
   return (
     <main className="dashboard-page">
 
@@ -502,6 +528,135 @@ const [iotError, setIotError] = useState("");
       );
     })}
 
+  </div>
+    {/* ===================================================
+      PHYSICAL PUMP CONTROL
+      =================================================== */}
+
+  <div
+    style={{
+      marginTop: "24px",
+      padding: "20px",
+      borderRadius: "16px",
+      border: "1px solid rgba(255,255,255,0.08)",
+      background: "rgba(255,255,255,0.03)",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "16px",
+      }}
+    >
+      <div>
+        <span className="panel-label">PHYSICAL CONTROL</span>
+        <h3 style={{ marginTop: "6px" }}>
+          Water Pump Control
+        </h3>
+      </div>
+
+      <button
+        type="button"
+        onClick={() => runPump("0")}
+        style={{
+          padding: "9px 16px",
+          borderRadius: "10px",
+          border: "1px solid rgba(255,80,80,0.4)",
+          background: "rgba(255,80,80,0.12)",
+          color: "#ff6b6b",
+          cursor: "pointer",
+          fontWeight: 600,
+        }}
+      >
+        STOP ALL
+      </button>
+    </div>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: "12px",
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => runPump("1")}
+        style={{
+          padding: "14px",
+          borderRadius: "12px",
+          border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.04)",
+          color: "inherit",
+          cursor: "pointer",
+        }}
+      >
+        <strong>PUMP 1</strong>
+        <br />
+        <span>City → Farm</span>
+        <br />
+        <small>RUN</small>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => runPump("2")}
+        style={{
+          padding: "14px",
+          borderRadius: "12px",
+          border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.04)",
+          color: "inherit",
+          cursor: "pointer",
+        }}
+      >
+        <strong>PUMP 2</strong>
+        <br />
+        <span>Farm → Industry</span>
+        <br />
+        <small>RUN</small>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => runPump("3")}
+        style={{
+          padding: "14px",
+          borderRadius: "12px",
+          border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.04)",
+          color: "inherit",
+          cursor: "pointer",
+        }}
+      >
+        <strong>PUMP 3</strong>
+        <br />
+        <span>Industry → Reservoir</span>
+        <br />
+        <small>RUN</small>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => runPump("4")}
+        style={{
+          padding: "14px",
+          borderRadius: "12px",
+          border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.04)",
+          color: "inherit",
+          cursor: "pointer",
+        }}
+      >
+        <strong>PUMP 4</strong>
+        <br />
+        <span>Reservoir → City</span>
+        <br />
+        <small>RUN</small>
+      </button>
+    </div>
   </div>
 
 
