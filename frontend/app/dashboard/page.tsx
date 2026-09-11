@@ -99,6 +99,9 @@ export default function Dashboard() {
 
   const [statsLoading, setStatsLoading] = useState(true);
   const [statsError, setStatsError] = useState("");
+  const [iotData, setIotData] = useState<any>(null);
+const [iotLoading, setIotLoading] = useState(true);
+const [iotError, setIotError] = useState("");
 
   useEffect(() => {
     try {
@@ -180,6 +183,71 @@ export default function Dashboard() {
       window.clearInterval(interval);
     };
   }, []);
+  useEffect(() => {
+  let mounted = true;
+
+  const fetchIoTTelemetry = async () => {
+    try {
+      setIotError("");
+
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+      if (!apiUrl) {
+        throw new Error("NEXT_PUBLIC_API_URL is not configured");
+      }
+
+      const response = await fetch(
+        `${apiUrl}/iot/telemetry/latest`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+          cache: "no-store",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `IoT telemetry request failed: ${response.status}`
+        );
+      }
+
+      const result = await response.json();
+
+      if (mounted) {
+        if (result.status === "online" && result.data) {
+          setIotData(result.data);
+          setIotError("");
+        } else {
+          setIotData(null);
+          setIotError("Waiting for telemetry");
+        }
+
+        setIotLoading(false);
+      }
+    } catch (error) {
+      console.error("Failed to load IoT telemetry:", error);
+
+      if (mounted) {
+        setIotError("IoT offline");
+        setIotLoading(false);
+      }
+    }
+  };
+
+  fetchIoTTelemetry();
+
+  const interval = window.setInterval(
+    fetchIoTTelemetry,
+    5000
+  );
+
+  return () => {
+    mounted = false;
+    window.clearInterval(interval);
+  };
+}, []);
 
   const formatLitres = (value: number) => {
     if (value >= 1000000) {
@@ -332,6 +400,195 @@ export default function Dashboard() {
           })}
 
         </div>
+        {/* ===================================================
+    LIVE IOT RESERVOIR TELEMETRY
+    =================================================== */}
+
+<div className="iot-section">
+
+  <div className="iot-section-header">
+    <div>
+      <span className="panel-label">
+        ESP32 SENSOR NETWORK
+      </span>
+
+      <h2>Live Reservoir Telemetry</h2>
+    </div>
+
+    <div
+      className={`iot-status ${
+        iotData ? "iot-online" : "iot-offline"
+      }`}
+    >
+      <span className="iot-status-dot" />
+
+      {iotLoading
+        ? "Connecting..."
+        : iotData
+          ? "IoT System Online"
+          : "IoT Offline"}
+    </div>
+  </div>
+
+
+  {/* TANK CARDS */}
+
+  <div className="iot-tank-grid">
+
+    {[
+      { id: "1", icon: "🏙️", label: "City Tank" },
+      { id: "2", icon: "🌾", label: "Farm Tank" },
+      { id: "3", icon: "🏭", label: "Industrial Tank" },
+      { id: "4", icon: "🏛️", label: "Government Reservoir" },
+    ].map((tank) => {
+
+      const tankData = iotData?.tanks?.[tank.id];
+
+      return (
+        <div className="iot-tank-card" key={tank.id}>
+
+          <div className="iot-tank-top">
+            <div className="iot-tank-name">
+              <span className="iot-tank-icon">
+                {tank.icon}
+              </span>
+
+              <span>{tank.label}</span>
+            </div>
+
+            <span className="iot-live-label">
+              LIVE
+            </span>
+          </div>
+
+          <div className="iot-tank-value">
+            {tankData
+              ? `${Number(tankData.pct).toFixed(1)}%`
+              : "--"}
+          </div>
+
+          <div className="iot-progress">
+            <div
+              className="iot-progress-fill"
+              style={{
+                width: `${
+                  tankData
+                    ? Math.max(
+                        0,
+                        Math.min(
+                          100,
+                          Number(tankData.pct)
+                        )
+                      )
+                    : 0
+                }%`,
+              }}
+            />
+          </div>
+
+          <div className="iot-tank-footer">
+            <span>
+              {tankData
+                ? `${Number(tankData.raw)} raw`
+                : "Waiting for data"}
+            </span>
+
+            {tankData?.is_reserve && (
+              <span>Reserve</span>
+            )}
+          </div>
+
+        </div>
+      );
+    })}
+
+  </div>
+
+
+  {/* ENVIRONMENTAL DATA */}
+
+  <div className="iot-environment-grid">
+
+    <div className="iot-environment-card">
+
+      <span className="iot-environment-icon">
+        🌡️
+      </span>
+
+      <div>
+        <span>Average Temperature</span>
+
+        <strong>
+          {iotData
+            ? `${Number(iotData.avg_temp).toFixed(1)}°C`
+            : "--"}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div className="iot-environment-card">
+
+      <span className="iot-environment-icon">
+        🌧️
+      </span>
+
+      <div>
+        <span>Rain Status</span>
+
+        <strong>
+          {iotData
+            ? iotData.any_rain
+              ? "Rain Detected"
+              : "Dry"
+            : "--"}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div className="iot-environment-card">
+
+      <span className="iot-environment-icon">
+        🌾
+      </span>
+
+      <div>
+        <span>Farm Rain Sensor</span>
+
+        <strong>
+          {iotData
+            ? iotData.farm_rain
+              ? "Rain Detected"
+              : "Dry"
+            : "--"}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div className="iot-environment-card">
+
+      <span className="iot-environment-icon">
+        📡
+      </span>
+
+      <div>
+        <span>Telemetry</span>
+
+        <strong>
+          {iotData ? "Live" : "Waiting"}
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
         {/* ===================================================
             MAIN GRID

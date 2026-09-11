@@ -13880,3 +13880,229 @@ button {
     height: 28px;
   }
 }
+/* =========================================================
+   LIVE IOT RESERVOIR TELEMETRY
+   ========================================================= */
+
+.iot-section {
+  margin-top: 26px;
+  margin-bottom: 28px;
+  padding: 24px;
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: 18px;
+  background: rgba(5, 20, 30, 0.55);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.iot-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.iot-section-header h2 {
+  margin: 5px 0 0;
+  font-size: 21px;
+  font-weight: 600;
+  color: #e8f7ff;
+}
+
+.iot-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.iot-online {
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+}
+
+.iot-offline {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.08);
+  border: 1px solid rgba(251, 113, 133, 0.2);
+}
+
+.iot-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+
+/* =========================================================
+   TANK GRID
+   ========================================================= */
+
+.iot-tank-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.iot-tank-card {
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(7, 29, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.iot-tank-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.iot-tank-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.iot-tank-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b8d0dc;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.iot-tank-icon {
+  font-size: 18px;
+}
+
+.iot-live-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2dd4bf;
+}
+
+.iot-tank-value {
+  margin-top: 17px;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 650;
+  color: #f1faff;
+}
+
+.iot-progress {
+  height: 7px;
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.iot-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #0ea5e9,
+    #2dd4bf
+  );
+  transition: width 0.5s ease;
+}
+
+.iot-tank-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  color: #607d8b;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   ENVIRONMENT CARDS
+   ========================================================= */
+
+.iot-environment-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.iot-environment-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 17px;
+  border-radius: 13px;
+  background: rgba(7, 29, 42, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.iot-environment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(14, 165, 233, 0.08);
+  font-size: 18px;
+}
+
+.iot-environment-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.iot-environment-card span {
+  color: #718b99;
+  font-size: 10px;
+}
+
+.iot-environment-card strong {
+  color: #dff5ff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .iot-tank-grid,
+  .iot-environment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .iot-section {
+    padding: 17px;
+  }
+
+  .iot-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .iot-tank-grid,
+  .iot-environment-grid {
+    grid-template-columns: 1fr;
+  }
+}
