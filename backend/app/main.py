@@ -15,6 +15,7 @@ from app.db import base
 from sqlalchemy import text
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.iot import router as iot_router
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="AquaXChange API",
@@ -43,6 +44,7 @@ app.include_router(recommendation_router)
 app.include_router(water_requests_router)
 app.include_router(water_sources_router)
 app.include_router(water_passports_router)
+app.include_router(iot_router)
 @app.get("/")
 def home():
     return {
