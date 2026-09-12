@@ -165,9 +165,7 @@ export default function WaterMapPage() {
             =================================================== */}
 
         <div className="water-map-heading">
-
           <div>
-
             <button
               className="map-back-button"
               onClick={() =>
@@ -175,38 +173,40 @@ export default function WaterMapPage() {
               }
             >
               <ArrowLeft size={14} />
-
               Back to Overview
             </button>
-
 
             <p className="dashboard-eyebrow">
               LIVE WATER NETWORK
             </p>
 
-
             <h1>
               Water <span>Intelligence Map</span>
             </h1>
-
 
             <p className="dashboard-subtitle">
               Monitor water sources, demand zones,
               treatment facilities and allocation flows
               in real time.
             </p>
-
           </div>
 
-
-          <div className="map-live-status">
-
-            <span />
-
-            LIVE NETWORK
-
+          <div className="flex flex-col items-end gap-3">
+            <div className="map-live-status">
+              <span />
+              LIVE NETWORK
+            </div>
+            
+            <a 
+              href="/dashboard/simulation" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-[#00e5ff] hover:bg-[#00cce6] text-black text-sm font-bold rounded-lg shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all"
+            >
+              <Maximize2 size={16} />
+              Open 3D Simulation
+            </a>
           </div>
-
         </div>
 
 
