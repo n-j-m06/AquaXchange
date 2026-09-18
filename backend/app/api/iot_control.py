@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from app.api.iot import latest_telemetry
+from app.services.redistribution import calculate_redistribution
 
 router = APIRouter(prefix="/iot", tags=["IoT Control"])
 
@@ -52,3 +54,21 @@ def get_pump_command(device_id: str):
         "device_id": device_id,
         "command": command,
     }
+# ============================================================
+# AI WATER REDISTRIBUTION
+# ============================================================
+
+@router.post("/redistribute")
+def redistribute_water():
+
+    if latest_telemetry is None:
+        raise HTTPException(
+            status_code=503,
+            detail="No live IoT telemetry available."
+        )
+
+    decision = calculate_redistribution(
+        latest_telemetry
+    )
+
+    return decision
