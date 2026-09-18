@@ -102,6 +102,7 @@ export default function Dashboard() {
   const [iotData, setIotData] = useState<any>(null);
 const [iotLoading, setIotLoading] = useState(true);
 const [iotError, setIotError] = useState("");
+const [hardwareOnline, setHardwareOnline] = useState(false);
 
   useEffect(() => {
     try {
@@ -118,6 +119,36 @@ const [iotError, setIotError] = useState("");
       // Keep default name if stored user data is unavailable
     }
   }, []);
+  useEffect(() => {
+  const checkHardwareStatus = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/iot/hardware-status`,
+        {
+          cache: "no-store",
+        }
+      );
+
+      if (!response.ok) {
+        setHardwareOnline(false);
+        return;
+      }
+
+      const data = await response.json();
+
+      setHardwareOnline(data.status === "online");
+    } catch (error) {
+      console.error("Hardware status error:", error);
+      setHardwareOnline(false);
+    }
+  };
+
+  checkHardwareStatus();
+
+  const interval = setInterval(checkHardwareStatus, 3000);
+
+  return () => clearInterval(interval);
+}, []);
 
   useEffect(() => {
     let mounted = true;
@@ -293,6 +324,10 @@ const [iotError, setIotError] = useState("");
     window.location.href = "/";
   };
   const runPump = async (command: string) => {
+     if (!hardwareOnline) {
+    console.warn("Hardware is offline.");
+    return;
+  }
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/iot/pump-command`,
@@ -317,6 +352,40 @@ const [iotError, setIotError] = useState("");
     console.log("Pump command sent:", data);
   } catch (error) {
     console.error("Pump control error:", error);
+  }
+};
+const redistributeWater = async () => {
+  if (!hardwareOnline) {
+    console.warn("Hardware is offline.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/iot/redistribute`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.detail || "Redistribution failed"
+      );
+    }
+
+    console.log("Redistribution decision:", data);
+
+  } catch (error) {
+    console.error(
+      "Redistribution error:",
+      error
+    );
   }
 };
   return (
@@ -555,11 +624,22 @@ const [iotError, setIotError] = useState("");
         <h3 style={{ marginTop: "6px" }}>
           Water Pump Control
         </h3>
+        <div
+  style={{
+    marginTop: "8px",
+    fontSize: "12px",
+    fontWeight: 700,
+    color: hardwareOnline ? "#22c55e" : "#ef4444",
+  }}
+>
+  {hardwareOnline ? "● HARDWARE ONLINE" : "● HARDWARE OFFLINE"}
+</div>
       </div>
 
       <button
-        type="button"
-        onClick={() => runPump("0")}
+  type="button"
+  onClick={() => runPump("0")}
+  disabled={!hardwareOnline}
         style={{
           padding: "9px 16px",
           borderRadius: "10px",
@@ -572,6 +652,30 @@ const [iotError, setIotError] = useState("");
       >
         STOP ALL
       </button>
+      <button
+  type="button"
+  onClick={redistributeWater}
+  disabled={!hardwareOnline}
+  style={{
+    padding: "9px 16px",
+    borderRadius: "10px",
+    border: hardwareOnline
+      ? "1px solid rgba(59,130,246,0.4)"
+      : "1px solid rgba(255,255,255,0.08)",
+    background: hardwareOnline
+      ? "rgba(59,130,246,0.12)"
+      : "rgba(255,255,255,0.04)",
+    color: hardwareOnline
+      ? "#60a5fa"
+      : "rgba(255,255,255,0.35)",
+    cursor: hardwareOnline
+      ? "pointer"
+      : "not-allowed",
+    fontWeight: 600,
+  }}
+>
+  REDISTRIBUTE
+</button>
     </div>
 
     <div
@@ -582,8 +686,9 @@ const [iotError, setIotError] = useState("");
       }}
     >
       <button
-        type="button"
-        onClick={() => runPump("1")}
+  type="button"
+  onClick={() => runPump("1")}
+  disabled={!hardwareOnline}
         style={{
           padding: "14px",
           borderRadius: "12px",
@@ -603,6 +708,7 @@ const [iotError, setIotError] = useState("");
       <button
         type="button"
         onClick={() => runPump("2")}
+        disabled={!hardwareOnline}
         style={{
           padding: "14px",
           borderRadius: "12px",
@@ -622,6 +728,7 @@ const [iotError, setIotError] = useState("");
       <button
         type="button"
         onClick={() => runPump("3")}
+        disabled={!hardwareOnline}
         style={{
           padding: "14px",
           borderRadius: "12px",
@@ -641,6 +748,7 @@ const [iotError, setIotError] = useState("");
       <button
         type="button"
         onClick={() => runPump("4")}
+        disabled={!hardwareOnline}
         style={{
           padding: "14px",
           borderRadius: "12px",
